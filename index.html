@@ -52,7 +52,7 @@ nav{background:var(--ink);padding:0 36px;height:56px;display:flex;align-items:ce
 .data-panel{background:var(--card);border:1px solid var(--line);border-radius:var(--r2);margin-bottom:32px;overflow:hidden;display:none;}
 .dp-head{padding:14px 24px;border-bottom:1px solid var(--line);display:flex;align-items:center;justify-content:space-between;background:var(--card2);}
 .dp-body{padding:20px 24px;}
-textarea{width:100%;height:120px;font-family:monospace;font-size:12px;padding:12px;border:1px solid var(--line2);border-radius:8px;background:var(--card2);outline:none;}
+textarea{width:100%;height:120px;font-family:monospace;font-size:12px;padding:12px;border:1px solid var(--line2);border-radius:8px;background:var(--card2);outline:none;white-space:pre;}
 .btn-sm-primary{padding:7px 16px;border-radius:7px;background:var(--gold);color:#fff;border:none;cursor:pointer;font-family:'Outfit';}
 
 /* ── SECTION HEADER ── */
@@ -60,7 +60,7 @@ textarea{width:100%;height:120px;font-family:monospace;font-size:12px;padding:12
 .sec-hd h2{font-family:'Playfair Display',serif;font-size:22px;font-weight:400;color:var(--ink);}
 .sec-hd-line{flex:1;height:1px;background:var(--line);}
 
-/* ── CHARTS ── */
+/* ── CHART CARDS & CONTAINERS ── */
 .chart-card{background:var(--card);border:1px solid var(--line);border-radius:var(--r2);padding:22px 24px;box-shadow:var(--sh);margin-bottom:24px;}
 .cc-head{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:16px;}
 .cc-title{font-size:14px;font-weight:600;color:var(--ink);}
@@ -69,42 +69,31 @@ textarea{width:100%;height:120px;font-family:monospace;font-size:12px;padding:12
 
 .overall-container { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
 @media(max-width:800px) { .overall-container { grid-template-columns: 1fr; } }
-.opp-box { background: var(--card2); border: 1px solid var(--line); border-radius: 12px; padding: 20px; }
-.opp-title { font-weight: 600; font-size: 13px; color: var(--ink); margin-bottom: 12px; text-transform: uppercase; letter-spacing: .05em; }
-.opp-list { list-style: none; }
-.opp-list li { font-size: 13px; padding: 10px 0; border-bottom: 1px dashed var(--line2); display:flex; justify-content: space-between; align-items:center;}
-.opp-list li:last-child { border-bottom: none; }
-.opp-val { font-weight: 600; color: var(--gold); text-align:right;}
 
-/* ── HIGHLIGHTS ── */
 .top-highlight-banner { background: #eef2f6; border: 1px solid #cdd7e1; padding: 14px 20px; border-radius: 10px; margin-bottom: 24px; display: flex; align-items: center; justify-content: flex-start; gap: 12px; font-size: 16px; color: #0f1923; box-shadow: 0 2px 8px rgba(0,0,0,0.03); }
 .top-highlight-banner strong { font-weight: 600; color: var(--teal); }
 .top-highlight-banner .badge { background: #fff; padding: 4px 12px; border-radius: 20px; font-size: 13px; font-weight: 500; border: 1px solid #cdd7e1; box-shadow: 0 1px 3px rgba(0,0,0,0.05); }
-.sec-highlight-box { background: var(--card2); border: 1px dashed var(--line2); border-radius: 8px; padding: 12px; text-align: center; margin-bottom: 16px; }
-.sec-highlight-label { font-size: 10px; font-weight: 600; color: var(--ink3); text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 4px; }
-.sec-highlight-value { font-size: 16px; font-weight: 600; color: var(--ink); }
 
-/* ── SECTION GRIDS ── */
-.section-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(340px, 1fr)); gap: 24px; margin-bottom: 40px; }
-.sc-card { background: var(--card); border: 1px solid var(--line); border-radius: var(--r2); overflow: hidden; box-shadow: var(--sh); display: flex; flex-direction: column; }
-.sc-head { padding: 16px 20px; background: var(--ink); color: #fff; display: flex; justify-content: space-between; align-items: center; }
-.sc-head.apt { background: var(--slate); }
-.sc-head h3 { font-family: 'Playfair Display', serif; font-size: 18px; font-weight: 400; margin: 0; }
-.sc-body { padding: 20px; display: flex; flex-direction: column; gap: 20px; flex: 1; }
-.sc-doughnut-wrap { height: 180px; position: relative; }
-.trait-list { display: flex; flex-direction: column; gap: 8px; }
-.trait-item { display: flex; justify-content: space-between; align-items: center; font-size: 12px; padding: 6px 10px; background: var(--card2); border-radius: 6px; }
-.trait-name { font-weight: 500; color: var(--ink2); }
-.trait-score { font-weight: 600; }
-.rec-box { background: var(--sage-l); border: 1px solid var(--sage-m); border-radius: 8px; padding: 14px; margin-top: auto; }
-.rec-box.apt-box { background: var(--slate-l); border: 1px solid var(--slate-m); }
-.rec-label { font-size: 10px; font-weight: 600; text-transform: uppercase; color: var(--sage); letter-spacing: .05em; margin-bottom: 6px; }
-.rec-box.apt-box .rec-label { color: var(--slate); }
-.rec-item { font-size: 12.5px; color: var(--ink); margin-bottom: 6px; line-height: 1.4; display:flex; align-items:flex-start; gap:6px; }
-.rec-item:last-child { margin-bottom: 0; }
+/* ── DEEP DIVE COMMAND CENTER CARDS ── */
+.deep-sec-card { background: var(--card); border: 1px solid var(--line); border-radius: var(--r2); margin-bottom: 40px; box-shadow: var(--sh); overflow: hidden; }
+.deep-sec-head { padding: 18px 24px; background: var(--ink); color: #fff; display: flex; justify-content: space-between; align-items: center; }
+.deep-sec-head h3 { font-family: 'Playfair Display', serif; font-size: 20px; font-weight: 400; margin: 0; }
+.deep-sec-badge { background: rgba(255,255,255,0.15); padding: 5px 14px; border-radius: 20px; font-size: 11px; font-weight: 600; letter-spacing: 0.05em; text-transform: uppercase; }
+.deep-sec-body { display: grid; grid-template-columns: 1fr 1fr 1.2fr; gap: 0; }
+@media(max-width: 950px) { .deep-sec-body { grid-template-columns: 1fr; } }
+.deep-chart-col { padding: 24px; border-right: 1px solid var(--line); display:flex; flex-direction: column;}
+@media(max-width: 950px) { .deep-chart-col { border-right: none; border-bottom: 1px solid var(--line); } }
+.deep-action-col { padding: 24px; background: var(--card2); display: flex; flex-direction: column; gap: 16px;}
 
-.fade-in{animation:fadeIn .5s ease both;}
-@keyframes fadeIn{from{opacity:0;transform:translateY(12px);}to{opacity:1;transform:translateY(0);}}
+.action-block { background: #fff; border: 1px solid var(--line); border-radius: 8px; padding: 16px; box-shadow: 0 2px 6px rgba(0,0,0,0.02); }
+.action-block.alert { border-color: var(--rose-m); background: var(--rose-l); }
+.action-block.monetize { border-color: var(--gold-m); background: var(--gold-l); }
+.action-label { font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; color: var(--ink4); margin-bottom: 6px; }
+.action-block.alert .action-label { color: var(--rose); }
+.action-block.monetize .action-label { color: var(--gold); }
+.action-title { font-size: 15px; font-weight: 600; color: var(--ink); margin-bottom: 4px; }
+.action-sub { font-size: 13px; color: var(--ink2); line-height: 1.5; }
+.action-do { margin-top: 10px; padding-top: 10px; border-top: 1px dashed rgba(0,0,0,0.1); font-size: 12.5px; font-weight: 500; color: var(--ink); display: flex; align-items: flex-start; gap: 6px; }
 
 /* ── INSIGHTS SECTION ── */
 .ins-kpi-row{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-bottom:28px;}
@@ -165,6 +154,9 @@ textarea{width:100%;height:120px;font-family:monospace;font-size:12px;padding:12
 .career-card-name{font-size:13px;font-weight:600;margin:6px 0 3px;}
 .career-card-count{font-size:22px;font-weight:700;}
 .career-card-action{font-size:11px;background:var(--card2);border:1px solid var(--line);border-radius:6px;padding:6px;margin-top:8px;}
+
+.fade-in{animation:fadeIn .5s ease both;}
+@keyframes fadeIn{from{opacity:0;transform:translateY(12px);}to{opacity:1;transform:translateY(0);}}
 </style>
 </head>
 <body>
@@ -199,132 +191,140 @@ textarea{width:100%;height:120px;font-family:monospace;font-size:12px;padding:12
     </div>
   </div>
 
-  <div class="sec-hd"><h2>Overall School-wide Career Demand</h2><div class="sec-hd-line"></div></div>
+  <div class="sec-hd"><h2>School-wide Macro Overview</h2><div class="sec-hd-line"></div></div>
   <div class="chart-card fade-in">
     <div class="top-highlight-banner" id="globalTopCareer"></div>
     <div class="overall-container">
       <div>
         <div class="cc-head">
-          <div><div class="cc-title">Career Interest Distribution (All Sections)</div><div class="cc-sub">Identify the largest target audience for school-wide initiatives.</div></div>
+          <div><div class="cc-title">Career Interest Distribution (School-wide)</div></div>
         </div>
         <div class="ch-wrap" style="height:280px;"><canvas id="overallDoughnut"></canvas></div>
       </div>
-      <div class="opp-box">
-        <div class="opp-title">Recommended Workshops & Programs</div>
-        <ul class="opp-list" id="overallOppList"></ul>
-      </div>
-    </div>
-  </div>
-
-  <div class="sec-hd"><h2>Section-wise Detailed Breakdown</h2><div class="sec-hd-line"></div></div>
-  <div class="section-grid" id="sectionGridContainer"></div>
-
-  <div class="sec-hd"><h2>Overall School-wide Aptitude Diagnostics</h2><div class="sec-hd-line"></div></div>
-  <div class="chart-card fade-in">
-    <div class="overall-container">
       <div>
         <div class="cc-head">
-          <div><div class="cc-title">Aptitude Dimensions Distribution</div><div class="cc-sub">Identify macro academic strengths and structural skill gaps.</div></div>
+          <div><div class="cc-title">Aptitude Distribution (School-wide)</div></div>
         </div>
         <div class="ch-wrap" style="height:280px;"><canvas id="aptCombinedBar"></canvas></div>
       </div>
-      <div class="opp-box">
-        <div class="opp-title">Action Plan</div>
-        <ul class="opp-list" id="aptOverallOppList"></ul>
-      </div>
     </div>
   </div>
 
-  <div class="sec-hd"><h2>Section-wise Aptitude Breakdown</h2><div class="sec-hd-line"></div></div>
-  <div class="section-grid" id="aptSectionGridContainer"></div>
-
-  <div class="sec-hd" style="margin-top:8px;">
-    <h2>Principal's Actionable Insights</h2>
+  <div class="sec-hd" style="margin-top:40px;">
+    <h2>Detailed Section-wise Command Center</h2>
     <div class="sec-hd-line"></div>
-    <span style="font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:.06em;color:var(--ink4);white-space:nowrap;">Decision Support</span>
+    <span style="font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:.06em;color:var(--ink4);white-space:nowrap;">Principal's Action View</span>
+  </div>
+
+  <div id="unifiedSectionContainer">
+    </div>
+
+  <div class="sec-hd" style="margin-top:40px;">
+    <h2>Executive Decision Support</h2>
+    <div class="sec-hd-line"></div>
   </div>
 
   <div class="ins-kpi-row fade-in" id="insKpiRow"></div>
 
   <div style="display:flex;gap:0;background:var(--card);border:1px solid var(--line);border-radius:10px;overflow:hidden;margin-bottom:20px;box-shadow:var(--sh);" id="insTabBar">
-    <button onclick="insTab('priority',this)" style="flex:1;padding:11px 0;font-family:'Outfit',sans-serif;font-size:12px;font-weight:600;border:none;background:var(--ink);color:#fff;cursor:pointer;">⚠ Urgent Actions</button>
+    <button onclick="insTab('priority',this)" style="flex:1;padding:11px 0;font-family:'Outfit',sans-serif;font-size:12px;font-weight:600;border:none;background:var(--ink);color:#fff;cursor:pointer;">⚠ Top Alerts</button>
     <button onclick="insTab('earn',this)"     style="flex:1;padding:11px 0;font-family:'Outfit',sans-serif;font-size:12px;font-weight:600;border:none;background:transparent;color:var(--ink3);cursor:pointer;">₹ Spend &amp; Earn</button>
-    <button onclick="insTab('sections',this)" style="flex:1;padding:11px 0;font-family:'Outfit',sans-serif;font-size:12px;font-weight:600;border:none;background:transparent;color:var(--ink3);cursor:pointer;">⊞ Section Plans</button>
   </div>
 
   <div id="ins-priority"></div>
   <div id="ins-earn" style="display:none;"></div>
-  <div id="ins-sections" style="display:none;"></div>
 
 </div>
 
 <script>
-/* ── SAMPLE DATA (Dynamic Template) ── */
+/* ── HUGE SAMPLE DATA FOR 5 SECTIONS (8A, 8B, 8C, 8D, 8E) ── */
 const SAMPLE = `Section,Test Type,Parameter,Interest Area,Score
-10_Voc,Aptitude,Culinary Logic,Culinary Arts,90
-10_Voc,Aptitude,Hospitality EQ,Hotel Management,85
-10_Voc,Aptitude,Event Planning Aptitude,Event Management,75
-10_Voc,Aptitude,Numerical Aptitude,Culinary Arts,60
-10_Voc,Interest,Food & Beverage,Culinary Arts,95
-10_Voc,Interest,Customer Service,Hotel Management,88
-10_Voc,Interest,Creative Plating,Culinary Arts,92
-10_Comm,Aptitude,Event Planning Aptitude,Event Management,92
-10_Comm,Aptitude,Hospitality EQ,Hotel Management,88
-10_Comm,Aptitude,Numerical Aptitude,Event Management,70
-10_Comm,Aptitude,Culinary Logic,Culinary Arts,50
-10_Comm,Interest,Logistics & Planning,Event Management,94
-10_Comm,Interest,Customer Service,Hotel Management,85`;
+8A,Aptitude,Musical Aptitude,Music Production,95
+8A,Aptitude,Visual Arts,Fine Arts,88
+8A,Aptitude,Language Aptitude,Performing Arts,80
+8A,Aptitude,Physical Endurance,Sports Management,45
+8A,Aptitude,Creative Logic,Design,85
+8A,Interest,Creative Expression,Fine Arts,92
+8A,Interest,Performing Arts,Music Production,90
+8A,Interest,Digital Art,Design,86
+8A,Interest,Storytelling,Journalism,78
+8A,Aptitude,Musical Aptitude,Music Production,91
+8A,Aptitude,Visual Arts,Fine Arts,84
+8A,Interest,Creative Expression,Fine Arts,89
+8B,Aptitude,Physical Endurance,Sports Management,96
+8B,Aptitude,Hand-Eye Coordination,Athletics,92
+8B,Aptitude,Visual Arts,Fine Arts,60
+8B,Aptitude,Musical Aptitude,Music Production,50
+8B,Aptitude,Language Aptitude,Sports Management,70
+8B,Interest,Physical Activity,Sports Management,95
+8B,Interest,Team Leadership,Athletics,88
+8B,Interest,Creative Expression,Fine Arts,65
+8B,Aptitude,Physical Endurance,Sports Management,94
+8B,Aptitude,Hand-Eye Coordination,Athletics,89
+8B,Interest,Physical Activity,Sports Management,92
+8C,Aptitude,Language Aptitude,Journalism,92
+8C,Aptitude,Visual Arts,Journalism,75
+8C,Aptitude,Verbal Reasoning,Law & Public Policy,88
+8C,Aptitude,Physical Endurance,Sports Management,55
+8C,Aptitude,Musical Aptitude,Music Production,60
+8C,Interest,Storytelling,Journalism,94
+8C,Interest,Public Speaking,Journalism,88
+8C,Interest,Debate & Negotiation,Law & Public Policy,85
+8C,Aptitude,Language Aptitude,Journalism,89
+8C,Aptitude,Verbal Reasoning,Law & Public Policy,86
+8C,Interest,Storytelling,Journalism,91
+8D,Aptitude,Numerical Aptitude,Technology,94
+8D,Aptitude,Abstract Reasoning,Robotics,90
+8D,Aptitude,Coding Logic,Software Development,88
+8D,Aptitude,Language Aptitude,Technology,65
+8D,Aptitude,Creative Logic,Software Development,75
+8D,Interest,Analytical Problem-Solving,Technology,96
+8D,Interest,System Building,Robotics,92
+8D,Interest,Digital Art,Software Development,70
+8D,Aptitude,Numerical Aptitude,Technology,92
+8D,Aptitude,Coding Logic,Software Development,85
+8D,Interest,Analytical Problem-Solving,Technology,94
+8E,Aptitude,Financial Literacy,Finance,88
+8E,Aptitude,Verbal Reasoning,Business Management,85
+8E,Aptitude,Organization Skills,Entrepreneurship,92
+8E,Aptitude,Abstract Reasoning,Finance,70
+8E,Aptitude,Physical Endurance,Business Management,50
+8E,Interest,Wealth Management,Finance,90
+8E,Interest,Business Strategy,Business Management,95
+8E,Interest,Team Leadership,Entrepreneurship,89
+8E,Aptitude,Financial Literacy,Finance,86
+8E,Aptitude,Organization Skills,Entrepreneurship,89
+8E,Interest,Business Strategy,Business Management,93`;
 
 /* ── DYNAMIC GENERATORS ── */
-// 1. Dynamic Color Palette
 const THEME_COLORS = ['#1a5c6b', '#9a6b1a', '#2a5a3a', '#7a2a3a', '#4a1a6a', '#7a3a1a', '#2c3a4a', '#8abf9a', '#c88a96', '#b0d4db', '#d4b06a'];
 let colorCache = {};
 let colorIdx = 0;
 function getColor(key) {
-  if (!colorCache[key]) {
-    colorCache[key] = THEME_COLORS[colorIdx % THEME_COLORS.length];
-    colorIdx++;
-  }
+  if (!colorCache[key]) { colorCache[key] = THEME_COLORS[colorIdx % THEME_COLORS.length]; colorIdx++; }
   return colorCache[key];
 }
 
-// Simple deterministic hash for consistent procedural generation
 function hashStr(str) {
   let h = 0; for(let i=0; i<str.length; i++) h = Math.imul(31, h) + str.charCodeAt(i) | 0;
   return Math.abs(h);
 }
 
-// 2. Dynamic Workshop Generators
 function getWorkshop(career) {
   const formats = ['Bootcamp', 'Masterclass', 'Club', 'Innovation Lab', 'Certification', 'Seminar', 'Workshop'];
   return `${career} ${formats[hashStr(career) % formats.length]}`;
 }
-function getElective(career) {
-  return `Intro to ${career}`;
-}
-function getFee(career) {
-  let base = (hashStr(career) % 4) + 1; // 1 to 4
-  return `₹${base},000 – ₹${base+2},000/mo`;
-}
-function getSetup(career) {
-  let base = (hashStr(career) % 5) * 10;
-  return `₹${base+10},000+`;
-}
-function getROI(career) {
-  const rois = ['Very High', 'High', 'Medium', 'Low'];
-  return rois[hashStr(career) % 4];
-}
+function getFee(career) { return `₹${(hashStr(career)%4)+1},000 – ₹${(hashStr(career)%4)+3},000/mo`; }
+function getSetup(career) { return `₹${((hashStr(career)%5)*10)+10},000+`; }
+function getROI(career) { const rois = ['Very High', 'High', 'Medium', 'Low']; return rois[hashStr(career) % 4]; }
 
-// 3. Dynamic Aptitude Recommendations
 function getAdvApt(apt) {
   const formats = ['Olympiad Coaching', 'Advanced Club', 'Excellence Group', 'Society', 'Mastery Hub'];
-  let short = apt.split(' ')[0];
-  return `${short} ${formats[hashStr(apt) % formats.length]}`;
+  return `${apt.split(' ')[0]} ${formats[hashStr(apt) % formats.length]}`;
 }
 function getRemApt(apt) {
   const formats = ['Foundation Support', 'Bridge Course', 'Remedial Class', 'Basic Skill Camp'];
-  let short = apt.split(' ')[0];
-  return `${short} ${formats[hashStr(apt) % formats.length]}`;
+  return `${apt.split(' ')[0]} ${formats[hashStr(apt) % formats.length]}`;
 }
 
 const avg = a => a.length ? a.reduce((s,v)=>s+v,0)/a.length : 0;
@@ -343,7 +343,6 @@ function parseCSV(txt){
   });
 }
 
-// GLOBALS populated dynamically
 let DYN_APT = [];
 let DYN_INT = [];
 
@@ -352,279 +351,182 @@ function go() {
   const rows = parseCSV(document.getElementById('csv').value);
   const secs = [...new Set(rows.map(r=>r['Section']))].filter(Boolean).sort();
   
-  // Dynamically extract parameters
   DYN_APT = [...new Set(rows.filter(r=>r['Test Type']==='Aptitude').map(r=>r['Parameter']))].filter(Boolean);
   DYN_INT = [...new Set(rows.filter(r=>r['Test Type']==='Interest').map(r=>r['Parameter']))].filter(Boolean);
 
-  const aptRows=rows.filter(r=>r['Test Type']==='Aptitude');
   const aptMap={};
   secs.forEach(s=>{
     aptMap[s]={};
     DYN_APT.forEach(p=>{
-      const vs=aptRows.filter(r=>r['Section']===s&&r['Parameter']===p).map(r=>parseFloat(r['Score'])).filter(v=>!isNaN(v));
+      const vs=rows.filter(r=>r['Test Type']==='Aptitude'&&r['Section']===s&&r['Parameter']===p).map(r=>parseFloat(r['Score'])).filter(v=>!isNaN(v));
       aptMap[s][p]=vs.length?avg(vs):null;
     });
   });
 
-  renderOverallDoughnut(rows);
-  renderSectionGrids(secs, rows);
-  renderOverallAptitude(rows);
-  renderAptSectionGrids(secs, aptMap);
-  buildInsights(rows);
+  renderMacroOverview(rows, DYN_APT);
+  renderUnifiedSections(secs, rows, aptMap);
+  buildInsights(rows, secs, aptMap);
 }
 
-/* ── 1. OVERALL CAREER DEMAND ── */
-function renderOverallDoughnut(rows){
+/* ── 1. MACRO OVERVIEW ── */
+function renderMacroOverview(rows, aptList){
   destroyChart('overallDoughnut');
+  destroyChart('aptCombinedBar');
+
+  // Career
   const counts={};
-  rows.filter(r=>r['Interest Area']).forEach(r=>{
-    counts[r['Interest Area']]=(counts[r['Interest Area']]||0)+1;
-  });
-  const sorted=Object.entries(counts).sort((a,b)=>b[1]-a[1]);
+  rows.filter(r=>r['Interest Area']).forEach(r=>{ counts[r['Interest Area']]=(counts[r['Interest Area']]||0)+1; });
+  const sortedCareers=Object.entries(counts).sort((a,b)=>b[1]-a[1]);
   
-  if(sorted.length > 0) {
+  if(sortedCareers.length > 0) {
     document.getElementById('globalTopCareer').innerHTML = `
-      🎯 TOP CAREER INTEREST: <strong>${sorted[0][0]}</strong> 
-      <span class="badge">${sorted[0][1]} responses</span>
+      🎯 TOP SCHOOL DEMAND: <strong>${sortedCareers[0][0]}</strong> 
+      <span class="badge">${sortedCareers[0][1]} responses across all sections</span>
     `;
   }
 
-  document.getElementById('overallOppList').innerHTML = sorted.slice(0, 4).map(([area, count]) => {
-    return `<li><span>• <strong>${getWorkshop(area)}</strong></span> <span class="opp-val">${count} Students</span></li>`;
-  }).join('');
-
-  const ctx=document.getElementById('overallDoughnut').getContext('2d');
-  charts['overallDoughnut']=new Chart(ctx,{
+  charts['overallDoughnut']=new Chart(document.getElementById('overallDoughnut').getContext('2d'),{
     type:'doughnut',
     data:{
-      labels:sorted.map(([a])=>a),
-      datasets:[{
-        data:sorted.map(([,c])=>c),
-        backgroundColor:sorted.map(([a])=>getColor(a)+'cc'),
-        borderColor:sorted.map(([a])=>getColor(a)),
-        borderWidth:2
-      }]
+      labels:sortedCareers.map(([a])=>a),
+      datasets:[{ data:sortedCareers.map(([,c])=>c), backgroundColor:sortedCareers.map(([a])=>getColor(a)+'cc'), borderColor:sortedCareers.map(([a])=>getColor(a)), borderWidth:2 }]
     },
-    options:{
-      responsive:true,maintainAspectRatio:false,cutout:'60%',
-      plugins:{legend:{position:'right',labels:{font:{size:12,family:'Outfit'},padding:10}}}
-    }
+    options:{ responsive:true, maintainAspectRatio:false, cutout:'60%', plugins:{legend:{position:'right',labels:{font:{size:12,family:'Outfit'},padding:10}}} }
+  });
+
+  // Aptitude
+  const overallApt = {};
+  aptList.forEach(p => overallApt[p] = []);
+  rows.filter(r => r['Test Type'] === 'Aptitude').forEach(r => {
+    const v = parseFloat(r['Score']);
+    if(overallApt[r['Parameter']] !== undefined && !isNaN(v)) overallApt[r['Parameter']].push(v);
+  });
+  const aptAverages = aptList.map(p => ({ param: p, avg: overallApt[p].length ? avg(overallApt[p]) : 0 })).filter(a => a.avg > 0);
+  
+  charts['aptCombinedBar'] = new Chart(document.getElementById('aptCombinedBar').getContext('2d'), {
+    type: 'bar',
+    data: {
+      labels: aptAverages.map(a => a.param.split(' ')[0]), 
+      datasets: [{ label: 'School Avg Score', data: aptAverages.map(a => r1(a.avg)), backgroundColor: 'rgba(42, 58, 106, 0.8)', borderRadius: 4 }]
+    },
+    options: { responsive: true, maintainAspectRatio: false, plugins: { legend: { display: false } }, scales: { y: { min: 40, max: 100 } } }
   });
 }
 
-/* ── 2. SECTION-WISE CAREER GRIDS ── */
-function renderSectionGrids(secs, rows) {
-  const container = document.getElementById('sectionGridContainer');
+/* ── 2. NEW DETAILED SECTION COMMAND CENTER ── */
+function renderUnifiedSections(secs, rows, aptMap) {
+  const container = document.getElementById('unifiedSectionContainer');
   let html = '';
 
   secs.forEach(sec => {
-    const secRows = rows.filter(r => r['Section'] === sec && r['Interest Area']);
-    const counts = {};
-    secRows.forEach(r => { counts[r['Interest Area']] = (counts[r['Interest Area']] || 0) + 1; });
-    const sortedCareers = Object.entries(counts).sort((a,b)=>b[1]-a[1]);
+    const secRows = rows.filter(r => r['Section'] === sec);
     
+    // Career Stats
+    const careerCounts = {};
+    secRows.filter(r=>r['Interest Area']).forEach(r => { careerCounts[r['Interest Area']] = (careerCounts[r['Interest Area']] || 0) + 1; });
+    const sortedCareers = Object.entries(careerCounts).sort((a,b)=>b[1]-a[1]);
     const topCareer = sortedCareers.length ? sortedCareers[0][0] : 'General';
     const topCareerCount = sortedCareers.length ? sortedCareers[0][1] : 0;
     
-    const secIntRows = rows.filter(r => r['Section'] === sec && r['Test Type'] === 'Interest');
-    const traitAvgs = [];
-    DYN_INT.forEach(p => {
-      const vs = secIntRows.filter(r => r['Parameter'] === p).map(r => parseFloat(r['Score'])).filter(v => !isNaN(v));
-      if(vs.length) traitAvgs.push({ name: p, score: r1(avg(vs)) });
-    });
-    
-    traitAvgs.sort((a,b) => b.score - a.score);
-    const topTraitsHtml = traitAvgs.slice(0,4).map(t => {
-      const color = t.score >= 80 ? 'var(--sage)' : (t.score >= 60 ? 'var(--gold)' : 'var(--rose)');
-      return `<div class="trait-item"><span class="trait-name">${t.name}</span><span class="trait-score" style="color:${color}">Avg: ${t.score}/100</span></div>`;
-    });
+    // Aptitude Stats
+    const aptStats = DYN_APT.map(p => ({ param: p, val: aptMap[sec][p] })).filter(s => s.val !== null).sort((a,b) => b.val - a.val);
+    const highestApt = aptStats.length > 0 ? aptStats[0] : null;
+    const lowestApt = aptStats.length > 0 ? aptStats[aptStats.length - 1] : null;
+
+    // Principal's Note Generation
+    let pNote = `Section ${sec} shows balanced metrics. Proceed with standard curriculum.`;
+    if(lowestApt && lowestApt.val < 60) {
+      pNote = `⚠️ <strong>Academic Alert:</strong> The class average for ${lowestApt.param} is very low (${r1(lowestApt.val)}/100). Implement remedial measures before pitching any advanced workshops.`;
+    } else if (highestApt && highestApt.val > 85) {
+      pNote = `🔥 <strong>High Performer:</strong> This section is exceptionally strong in ${highestApt.param} (${r1(highestApt.val)}/100). Highly recommended for fast-tracking ${getWorkshop(topCareer)}.`;
+    }
 
     html += `
-      <div class="sc-card fade-in">
-        <div class="sc-head"><h3>Section ${sec}</h3></div>
-        <div class="sc-body">
-          <div class="sec-highlight-box">
-             <div class="sec-highlight-label">🎯 Top Interest</div>
-             <div class="sec-highlight-value">${topCareer} <span class="sec-highlight-count">(${topCareerCount} responses)</span></div>
+      <div class="deep-sec-card fade-in">
+        <div class="deep-sec-head">
+          <h3>Class ${sec}</h3>
+          <span class="deep-sec-badge">Analytics & Action Plan</span>
+        </div>
+        <div class="deep-sec-body">
+          
+          <div class="deep-chart-col">
+            <div class="cc-head"><div class="cc-title">Cognitive & Aptitude Profile</div><div class="cc-sub">Average scores out of 100</div></div>
+            <div class="ch-wrap" style="flex:1; min-height:220px;"><canvas id="deep_apt_${sec}"></canvas></div>
           </div>
-          <div class="sc-doughnut-wrap"><canvas id="doughnut_${sec}"></canvas></div>
-          <div>
-            <div style="font-size:11px;font-weight:600;color:var(--ink4);text-transform:uppercase;margin-bottom:6px;">Top Traits</div>
-            <div class="trait-list">${topTraitsHtml.join('')}</div>
+
+          <div class="deep-chart-col">
+            <div class="cc-head"><div class="cc-title">Career Interest Distribution</div><div class="cc-sub">Student headcount per track</div></div>
+            <div class="ch-wrap" style="flex:1; min-height:220px;"><canvas id="deep_car_${sec}"></canvas></div>
           </div>
-          <div class="rec-box">
-            <div class="rec-label">Dynamic Action Plan</div>
-            <div class="rec-item">• <strong>Launch:</strong> ${getWorkshop(topCareer)}</div>
-            <div class="rec-item">• <strong>Elective:</strong> ${getElective(topCareer)}</div>
+
+          <div class="deep-action-col">
+            
+            <div class="action-block ${lowestApt && lowestApt.val < 65 ? 'alert' : ''}">
+              <div class="action-label">Critical Gap to Fix</div>
+              <div class="action-title">${lowestApt ? lowestApt.param : 'None'}</div>
+              <div class="action-sub">Class Test Avg: <strong>${lowestApt ? r1(lowestApt.val) : '-'} / 100</strong></div>
+              <div class="action-do">➤ <strong>Action:</strong> Run ${lowestApt ? getRemApt(lowestApt.param) : '-'}</div>
+            </div>
+
+            <div class="action-block monetize">
+              <div class="action-label">Monetization Target</div>
+              <div class="action-title">${topCareer}</div>
+              <div class="action-sub">High demand: <strong>${topCareerCount} students</strong> want this track. Strength in ${highestApt?highestApt.param.split(' ')[0]:''} supports this.</div>
+              <div class="action-do">➤ <strong>Pitch:</strong> ${getWorkshop(topCareer)}</div>
+            </div>
+
+            <div style="font-size:12px; color:var(--ink2); padding:0 8px; line-height:1.5; border-left:3px solid var(--ink4);">
+              <span style="font-weight:700; color:var(--ink); text-transform:uppercase; font-size:10px; display:block; margin-bottom:4px;">Principal's Summary</span>
+              ${pNote}
+            </div>
+
           </div>
+
         </div>
       </div>
     `;
   });
+
   container.innerHTML = html;
 
+  // Render Charts per section
   secs.forEach(sec => {
-    const secRows = rows.filter(r => r['Section'] === sec && r['Interest Area']);
-    const counts = {};
-    secRows.forEach(r => { counts[r['Interest Area']] = (counts[r['Interest Area']] || 0) + 1; });
-    const sorted = Object.entries(counts).sort((a,b)=>b[1]-a[1]);
+    const secRows = rows.filter(r => r['Section'] === sec);
     
-    const ctx = document.getElementById(`doughnut_${sec}`).getContext('2d');
-    charts[`doughnut_${sec}`] = new Chart(ctx, {
+    // Aptitude Chart (Horizontal Bar)
+    const aptData = DYN_APT.map(p => aptMap[sec][p] !== null ? r1(aptMap[sec][p]) : 0);
+    charts[`deep_apt_${sec}`] = new Chart(document.getElementById(`deep_apt_${sec}`).getContext('2d'), {
+      type: 'bar',
+      data: { labels: DYN_APT.map(p=>p.split(' ')[0]), datasets: [{ data: aptData, backgroundColor: 'var(--slate-m)', borderRadius: 3 }] },
+      options: { 
+        indexAxis: 'y', 
+        responsive: true, maintainAspectRatio: false, 
+        plugins: { legend: { display: false } }, 
+        scales: { x: { min: 30, max: 100, ticks:{font:{size:10}} }, y:{ ticks:{font:{size:11, weight:'500'}} } } 
+      }
+    });
+
+    // Career Chart
+    const careerCounts = {};
+    secRows.filter(r=>r['Interest Area']).forEach(r => { careerCounts[r['Interest Area']] = (careerCounts[r['Interest Area']] || 0) + 1; });
+    const sortedCareers = Object.entries(careerCounts).sort((a,b)=>b[1]-a[1]);
+    charts[`deep_car_${sec}`] = new Chart(document.getElementById(`deep_car_${sec}`).getContext('2d'), {
       type:'doughnut',
       data:{
-        labels:sorted.map(([a])=>a),
-        datasets:[{
-          data:sorted.map(([,c])=>c),
-          backgroundColor:sorted.map(([a])=>getColor(a)+'cc'),
-          borderColor:sorted.map(([a])=>getColor(a)),
-          borderWidth:1.5
-        }]
+        labels:sortedCareers.map(([a])=>a),
+        datasets:[{ data:sortedCareers.map(([,c])=>c), backgroundColor:sortedCareers.map(([a])=>getColor(a)+'cc'), borderColor:sortedCareers.map(([a])=>getColor(a)), borderWidth:1.5 }]
       },
-      options:{
-        responsive:true,maintainAspectRatio:false,cutout:'50%',
-        plugins:{legend:{position:'right',labels:{font:{size:10,family:'Outfit'},boxWidth:8}}}
-      }
+      options:{ responsive:true, maintainAspectRatio:false, cutout:'55%', plugins:{legend:{position:'bottom',labels:{font:{size:10,family:'Outfit'},boxWidth:8}}} }
     });
   });
 }
 
-/* ── 3. OVERALL COMBINED APTITUDE ── */
-function renderOverallAptitude(rows) {
-  destroyChart('aptCombinedBar');
-  const overallApt = {};
-  DYN_APT.forEach(p => overallApt[p] = []);
-
-  rows.filter(r => r['Test Type'] === 'Aptitude').forEach(r => {
-    const p = r['Parameter'];
-    const v = parseFloat(r['Score']);
-    if(overallApt[p] !== undefined && !isNaN(v)) overallApt[p].push(v);
-  });
-
-  const aptAverages = DYN_APT.map(p => ({
-    param: p,
-    avg: overallApt[p].length ? avg(overallApt[p]) : 0
-  })).filter(a => a.avg > 0);
-
-  if(!aptAverages.length) return;
-
-  const ctx = document.getElementById('aptCombinedBar').getContext('2d');
-  charts['aptCombinedBar'] = new Chart(ctx, {
-    type: 'bar',
-    data: {
-      labels: aptAverages.map(a => a.param), 
-      datasets: [{
-        label: 'School Avg Score',
-        data: aptAverages.map(a => r1(a.avg)),
-        backgroundColor: 'rgba(42, 58, 106, 0.8)',
-        borderColor: 'var(--slate)',
-        borderWidth: 1.5,
-        borderRadius: 4
-      }]
-    },
-    options: {
-      responsive: true, maintainAspectRatio: false,
-      plugins: { legend: { display: false } },
-      scales: {
-        x: { grid: { display: false }, ticks: { font: { size: 10 } } },
-        y: { min: 40, max: 100, grid: { color: 'rgba(0,0,0,0.05)' }, ticks: { font: { size: 11 } } }
-      }
-    }
-  });
-
-  const sorted = [...aptAverages].sort((a,b) => b.avg - a.avg);
-  const highest = sorted[0];
-  const lowest = sorted[sorted.length - 1];
-  
-  document.getElementById('aptOverallOppList').innerHTML = `
-    <li><span>• Top Strength: <strong>${highest.param}</strong></span> <span class="opp-val">School Test Avg: ${r1(highest.avg)}/100</span></li>
-    <li><span>• <strong>Action:</strong> ${getAdvApt(highest.param)}</span></li>
-    <li style="margin-top:10px;"><span>• Critical Gap: <strong>${lowest.param}</strong></span> <span class="opp-val" style="color:var(--rose)">School Test Avg: ${r1(lowest.avg)}/100</span></li>
-    <li><span>• <strong>Action:</strong> ${getRemApt(lowest.param)}</span></li>
-  `;
-}
-
-/* ── 4. SECTION APTITUDE BREAKDOWN ── */
-function renderAptSectionGrids(secs, aptMap) {
-  const container = document.getElementById('aptSectionGridContainer');
-  let html = '';
-
-  secs.forEach(sec => {
-    const stats = DYN_APT.map(p => ({ param: p, val: aptMap[sec][p] })).filter(s => s.val !== null);
-    stats.sort((a,b) => b.val - a.val);
-    
-    let traitHtml = '';
-    let highest = null, lowest = null;
-    
-    if(stats.length > 0) {
-      highest = stats[0]; lowest = stats[stats.length - 1];
-      traitHtml += `<div class="trait-item"><span class="trait-name">Top Score: ${highest.param}</span><span class="trait-score" style="color:var(--sage)">Avg: ${r1(highest.val)}</span></div>`;
-      traitHtml += `<div class="trait-item"><span class="trait-name">Weakest Score: ${lowest.param}</span><span class="trait-score" style="color:var(--rose)">Avg: ${r1(lowest.val)}</span></div>`;
-    }
-
-    html += `
-      <div class="sc-card fade-in">
-        <div class="sc-head apt"><h3>Section ${sec}</h3></div>
-        <div class="sc-body">
-          <div class="sc-doughnut-wrap"><canvas id="aptBar_${sec}"></canvas></div>
-          <div><div style="font-size:11px;font-weight:600;color:var(--ink4);text-transform:uppercase;margin-bottom:6px;">Extremes</div><div class="trait-list">${traitHtml}</div></div>
-          <div class="rec-box apt-box">
-            <div class="rec-label">Dynamic Interventions</div>
-            <div class="rec-item">• <strong>Advance:</strong> ${highest?getAdvApt(highest.param):'None'}</div>
-            <div class="rec-item">• <strong>Remedial:</strong> ${lowest?getRemApt(lowest.param):'None'}</div>
-          </div>
-        </div>
-      </div>
-    `;
-  });
-  container.innerHTML = html;
-
-  secs.forEach(sec => {
-    const ctx = document.getElementById(`aptBar_${sec}`).getContext('2d');
-    const data = DYN_APT.map(p => aptMap[sec][p] !== null ? r1(aptMap[sec][p]) : 0);
-    charts[`aptBar_${sec}`] = new Chart(ctx, {
-      type: 'bar',
-      data: {
-        labels: DYN_APT.map(p => p.split(' ')[0]), 
-        datasets: [{ data: data, backgroundColor: 'var(--slate-m)', borderRadius: 3 }]
-      },
-      options: { responsive: true, maintainAspectRatio: false, plugins: { legend: { display: false } }, scales: { y: { min: 40, max: 100 }, x: { ticks: { font: { size: 9 } } } } }
-    });
-  });
-}
-
-/* ── INSIGHTS ENGINE (100% DYNAMIC) ── */
-function buildInsights(rows) {
-  const secs = [...new Set(rows.map(r => r['Section']))].filter(Boolean).sort();
-
-  const secStats = {};
-  secs.forEach(s => {
-    const aptRows = rows.filter(r => r['Section'] === s && r['Test Type'] === 'Aptitude');
-    const intRows = rows.filter(r => r['Section'] === s && r['Test Type'] === 'Interest');
-    const aptMap = {};
-    DYN_APT.forEach(p => { const vs = aptRows.filter(r => r['Parameter'] === p).map(r => parseFloat(r['Score'])).filter(v => !isNaN(v)); if (vs.length) aptMap[p] = avg(vs); });
-    const aptSorted = Object.entries(aptMap).sort((a,b) => b[1]-a[1]);
-    
-    const intMap = {};
-    DYN_INT.forEach(p => { const vs = intRows.filter(r => r['Parameter'] === p).map(r => parseFloat(r['Score'])).filter(v => !isNaN(v)); if (vs.length) intMap[p] = avg(vs); });
-    
-    const careerCounts = {};
-    rows.filter(r => r['Section'] === s && r['Interest Area']).forEach(r => { careerCounts[r['Interest Area']] = (careerCounts[r['Interest Area']] || 0) + 1; });
-    const careerSorted = Object.entries(careerCounts).sort((a,b) => b[1]-a[1]);
-
-    secStats[s] = { aptMap, aptSorted, intMap,
-      topCareer: careerSorted[0]?.[0] || 'Unknown', topCareerCount: careerSorted[0]?.[1] || 0,
-      careerSorted, topApt: aptSorted[0], botApt: aptSorted[aptSorted.length - 1],
-      topTrait: Object.entries(intMap).sort((a,b)=>b[1]-a[1])[0],
-      botTrait: Object.entries(intMap).sort((a,b)=>a[1]-b[1])[0]
-    };
-  });
-
+/* ── INSIGHTS ENGINE ── */
+function buildInsights(rows, secs, aptMap) {
   const schoolCareer = {};
   rows.filter(r => r['Interest Area']).forEach(r => { schoolCareer[r['Interest Area']] = (schoolCareer[r['Interest Area']] || 0) + 1; });
   const careerRanked = Object.entries(schoolCareer).sort((a,b) => b[1]-a[1]);
-  const totalRows = rows.length;
-
+  
   const schoolApt = {};
   DYN_APT.forEach(p => {
     const vs = rows.filter(r => r['Test Type'] === 'Aptitude' && r['Parameter'] === p).map(r => parseFloat(r['Score'])).filter(v => !isNaN(v));
@@ -634,76 +536,35 @@ function buildInsights(rows) {
   const topSchoolApt = schoolAptSorted[0];
   const botSchoolApt = schoolAptSorted[schoolAptSorted.length - 1];
 
-  // 1. KPI STRIP
-  const topCareerSchool = careerRanked[0]?.[0] || '—';
-  const topCareerPct = careerRanked[0] ? Math.round(careerRanked[0][1] / totalRows * 100) : 0;
-  const sectionsNeedHelp = secs.filter(s => secStats[s].botApt && secStats[s].botApt[1] < 60).length;
+  // KPI STRIP
+  const sectionsNeedHelp = secs.filter(s => {
+    const min = Math.min(...DYN_APT.map(p => aptMap[s][p] || 100));
+    return min < 60;
+  }).length;
 
   document.getElementById('insKpiRow').innerHTML = `
-    <div class="ins-kpi gold"><div class="ins-kpi-label">Top Demand</div><div class="ins-kpi-val">${topCareerSchool}</div><div class="ins-kpi-sub">${topCareerPct}% of students prefer this</div></div>
+    <div class="ins-kpi gold"><div class="ins-kpi-label">Top Demand</div><div class="ins-kpi-val">${careerRanked[0]?.[0] || '—'}</div><div class="ins-kpi-sub">Highest student interest</div></div>
     <div class="ins-kpi red"><div class="ins-kpi-label">Critical Skill Gap</div><div class="ins-kpi-val">${botSchoolApt ? botSchoolApt[0].split(' ')[0] : '—'}</div><div class="ins-kpi-sub">School Test Avg: ${botSchoolApt ? r1(botSchoolApt[1]) : '—'}/100</div></div>
     <div class="ins-kpi green"><div class="ins-kpi-label">School Strength</div><div class="ins-kpi-val">${topSchoolApt ? topSchoolApt[0].split(' ')[0] : '—'}</div><div class="ins-kpi-sub">School Test Avg: ${topSchoolApt ? r1(topSchoolApt[1]) : '—'}/100</div></div>
     <div class="ins-kpi"><div class="ins-kpi-label">Sections Flagged</div><div class="ins-kpi-val" style="color:${sectionsNeedHelp>0?'var(--rose)':'var(--sage)'};">${sectionsNeedHelp}</div><div class="ins-kpi-sub">Scoring < 60% in core assessments</div></div>
   `;
 
-  // 2. CAREER TRACKS (Dynamic Color & Action generation)
-  const maxCount = careerRanked[0]?.[1] || 1;
-  const roiColors = { 'Very High':'var(--sage)', 'High':'var(--teal)', 'Medium':'var(--gold)', 'Low':'var(--rose)' };
-  const chartColors = careerRanked.map(([c]) => getColor(c) + 'dd');
-  const chartBorders = careerRanked.map(([c]) => getColor(c));
-
-  const legendHtml = careerRanked.map(([career, count]) => `<div class="career-legend-item"><span class="career-legend-dot" style="background:${getColor(career)};"></span><span class="career-legend-name">${career}</span><span class="career-legend-pct">${Math.round(count / totalRows * 100)}%</span></div>`).join('');
-
-  const careerCardsHtml = careerRanked.map(([career, count], idx) => {
-    const col = getColor(career);
-    const barW = Math.round((count / maxCount) * 100);
-    const roi = getROI(career);
-    return `<div class="career-card">
-      <div class="career-card-accent" style="background:${col};"></div>
-      <div class="career-card-rank">#${idx + 1}</div>
-      <div class="career-card-name">${career}</div>
-      <div class="career-card-count" style="color:${col};">${count}</div>
-      <div class="career-card-pct">${Math.round(count / totalRows * 100)}% of responses</div>
-      <div class="career-card-bar"><div class="career-card-fill" style="width:${barW}%;background:${col};"></div></div>
-      <div class="career-card-action"><strong style="color:${roiColors[roi]};">ROI: ${roi} · ${getFee(career)}</strong>${getWorkshop(career)}</div>
-    </div>`;
-  }).join('');
-
-  const existingPanel = document.getElementById('careerTracksPanel');
-  if (existingPanel) existingPanel.remove();
-  
-  const panelDiv = document.createElement('div');
-  panelDiv.innerHTML = `
-    <div class="career-panel fade-in" id="careerTracksPanel">
-      <div class="career-panel-head"><div><div class="career-panel-title">Monetizable Programs Distribution</div></div></div>
-      <div class="career-panel-body">
-        <div class="career-doughnut-wrap"><div class="career-doughnut-canvas"><canvas id="insCareerDoughnut"></canvas></div><div class="career-legend">${legendHtml}</div></div>
-        <div class="career-cards-grid">${careerCardsHtml}</div>
-      </div>
-    </div>`;
-  document.getElementById('insTabBar').parentNode.insertBefore(panelDiv.firstElementChild, document.getElementById('insTabBar'));
-
-  const dCtx = document.getElementById('insCareerDoughnut').getContext('2d');
-  if (window._insCareerChart) window._insCareerChart.destroy();
-  window._insCareerChart = new Chart(dCtx, {
-    type: 'doughnut', data: { labels: careerRanked.map(([c]) => c), datasets: [{ data: careerRanked.map(([,n]) => n), backgroundColor: chartColors, borderColor: chartBorders, borderWidth: 1.5 }] },
-    options: { responsive: true, maintainAspectRatio: false, cutout: '60%', plugins: { legend: { display: false } } }
-  });
-
-  // 3. TABS CONTENT (Dynamic Logic)
+  // ALERTS (PRIORITY TAB)
   let priorityHtml = '';
-  // Generic Weakest Aptitude alert
   if (botSchoolApt && botSchoolApt[1] < 70) {
-    const affectedSecs = secs.filter(s => secStats[s].aptMap[botSchoolApt[0]] < 70).join(', ');
+    const affectedSecs = secs.filter(s => aptMap[s][botSchoolApt[0]] < 70).join(', ');
     priorityHtml += insightBlock('red','urgent',
-      `Critical Skill Gap — ${botSchoolApt[0]}`,
+      `Critical Academic Gap — ${botSchoolApt[0]}`,
       `The average student test score across the school is only <strong>${r1(botSchoolApt[1])}/100</strong>. This foundational weakness limits students' ability to succeed in related academic streams.`,
       `Launch a focused ${getRemApt(botSchoolApt[0])}. Prioritize sections: ${affectedSecs||'All'}.`,
       ['Immediate', 'Remedial']
     );
   }
-  // Conflict Alert: High Demand Career vs Low Corresponding Aptitude (Generic heuristic)
-  const topCareerSecs = secs.filter(s => secStats[s].topCareer === topCareerSchool);
+  const topCareerSchool = careerRanked[0]?.[0];
+  const topCareerSecs = secs.filter(s => {
+    const counts = {}; rows.filter(r=>r['Section']===s&&r['Interest Area']).forEach(r=>{counts[r['Interest Area']]=(counts[r['Interest Area']]||0)+1;});
+    return Object.entries(counts).sort((a,b)=>b[1]-a[1])[0]?.[0] === topCareerSchool;
+  });
   if(topCareerSecs.length > 0 && botSchoolApt && botSchoolApt[1] < 65) {
     priorityHtml += insightBlock('gold','watch',
       `Stream Mismatch Warning for "${topCareerSchool}" Aspirants`,
@@ -712,9 +573,9 @@ function buildInsights(rows) {
       ['Counseling needed', 'Pre-stream selection']
     );
   }
-  document.getElementById('ins-priority').innerHTML = priorityHtml || '<p style="padding:20px;">No critical actions required.</p>';
+  document.getElementById('ins-priority').innerHTML = priorityHtml || '<p style="padding:20px;">No critical actions required at the school level.</p>';
 
-  // SPEND & EARN
+  // SPEND & EARN TAB
   const roiOrder = { 'Very High': 4, 'High': 3, 'Medium': 2, 'Low': 1 };
   const earnRows = careerRanked.sort((a,b) => (roiOrder[getROI(b[0])] - roiOrder[getROI(a[0])]) || b[1] - a[1]);
   
@@ -736,25 +597,11 @@ function buildInsights(rows) {
       <div class="ib-strip green"></div>
       <div class="ib-body">
         <div class="ib-head"><div class="ib-title">Dynamic Programs to Launch</div><span class="ib-tag tag-earn">Earn</span></div>
-        <div class="ib-what">Procedurally generated based on data volume and categorical hash. Launch the top 2-3 to maximize ROI.</div>
+        <div class="ib-what">Procedurally generated based on data volume. Launch the top 2-3 to maximize ROI.</div>
         <div style="overflow-x:auto;"><table class="spend-table"><thead><tr><th>Career Track</th><th>Program</th><th style="text-align:center;">Demand</th><th>Estimated Fee</th><th>Est. Setup Cost</th><th>ROI</th></tr></thead><tbody>${tableRows}</tbody></table></div>
       </div>
     </div>
   `;
-
-  // SECTION PLANS
-  let secHtml = '';
-  secs.forEach(s => {
-    const st = secStats[s];
-    const urgency = (st.botApt && st.botApt[1] < 60) ? 'red' : 'green';
-    secHtml += insightBlock(urgency, urgency === 'red'?'urgent':'plan',
-      `Section ${s} — Driven by ${st.topCareer}`,
-      `<strong>Demand:</strong> ${st.topCareer} &nbsp;·&nbsp; <strong>Top Score:</strong> ${st.topApt?st.topApt[0]:'-'} &nbsp;·&nbsp; <strong>Weakest Score:</strong> ${st.botApt?st.botApt[0]:'-'}`,
-      `1. Push ${getAdvApt(st.topApt?st.topApt[0]:'General')}. 2. Fix via ${getRemApt(st.botApt?st.botApt[0]:'General')}. 3. Pitch ${getWorkshop(st.topCareer)}.`,
-      [`Career: ${st.topCareer}`]
-    );
-  });
-  document.getElementById('ins-sections').innerHTML = secHtml;
 }
 
 function insightBlock(color, tag, title, what, action, chips) {
@@ -764,7 +611,7 @@ function insightBlock(color, tag, title, what, action, chips) {
 }
 
 function insTab(id, btn) {
-  ['priority','earn','sections'].forEach(t => document.getElementById('ins-'+t).style.display = t === id ? 'block' : 'none');
+  ['priority','earn'].forEach(t => document.getElementById('ins-'+t).style.display = t === id ? 'block' : 'none');
   document.querySelectorAll('#insTabBar button').forEach(b => { b.style.background = 'transparent'; b.style.color = 'var(--ink3)'; });
   btn.style.background = 'var(--ink)'; btn.style.color = '#fff';
 }
