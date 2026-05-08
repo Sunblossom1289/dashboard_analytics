@@ -4,46 +4,59 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>School Result Analytics Dashboard</title>
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.js"></script>
 <style>
 :root{
-  --ink:#0f1923;--ink2:#2c3a4a;--ink3:#5a6a7a;--ink4:#8a9aaa;
-  --paper:#f4f2ed;--card:#ffffff;--card2:#f9f8f5;
-  --line:#e6e3dc;--line2:#d4d0c8;
-  --teal:#1a5c6b;--teal-l:#e3f0f3;--teal-m:#b0d4db;
-  --gold:#9a6b1a;--gold-l:#f5edda;--gold-m:#d4b06a;
-  --rose:#7a2a3a;--rose-l:#f5e6e8;--rose-m:#c88a96;
-  --sage:#2a5a3a;--sage-l:#e3f0e7;--sage-m:#8abf9a;
-  --slate:#2a3a6a;--slate-l:#e6eaf5;--slate-m:#8a9acf;
+  /* Brand Colors */
+  --ink:#1b4965;--ink2:#4a7a96;--ink3:#4a7a96;--ink4:#8aafc4;
+  --paper:#f8fbff;--card:#ffffff;--card2:#f0f7ff;
+  --line:#bee9e8;--line2:#cae9ff;
+
+  /* Primary brand blues */
+  --yale-blue:#1b4965;
+  --fresh-sky:#5fa8d3;
+  --pacific-blue:#62b6cb;
+  --pale-sky:#cae9ff;
+  --frozen-water:#bee9e8;
+  --steel-blue:#4a7a96;
+  --deep-navy:#0e2b3c;
+
+  /* Semantic replacements mapped to brand */
+  --teal:#1b4965;--teal-l:#cae9ff;--teal-m:#62b6cb;
+  --gold:#b5833d;--gold-l:#fef3e2;--gold-m:#d4a76a;
+  --rose:#c0392b;--rose-l:#fdecea;--rose-m:#e88a80;
+  --sage:#1b7a4a;--sage-l:#e3f5ec;--sage-m:#5abf8a;
+  --slate:#025782;--slate-l:#e0f0fb;--slate-m:#5fa8d3;
   --rust:#7a3a1a;--rust-l:#f5ebe3;--rust-m:#c89070;
-  --plum:#4a1a6a;--plum-l:#ede3f5;--plum-m:#a870cf;
+  --plum:#2a5a8a;--plum-l:#e0eef8;--plum-m:#5a9acf;
+
   --r:14px;--r2:20px;
-  --sh:0 1px 4px rgba(0,0,0,0.06),0 4px 20px rgba(0,0,0,0.05);
-  --sh2:0 8px 32px rgba(0,0,0,0.12);
+  --sh:0 1px 4px rgba(27,73,101,0.06),0 4px 20px rgba(27,73,101,0.07);
+  --sh2:0 8px 32px rgba(27,73,101,0.14);
 }
 *{box-sizing:border-box;margin:0;padding:0;}
 html{scroll-behavior:smooth;}
-body{font-family:'Outfit',sans-serif;background:var(--paper);color:var(--ink);font-size:14px;line-height:1.6;min-height:100vh;}
+body{font-family:'Inter',sans-serif;background:var(--paper);color:var(--ink);font-size:14px;line-height:1.6;min-height:100vh;}
 
 /* ── NAV ── */
-nav{background:var(--ink);padding:0 36px;height:56px;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:200;}
-.nav-logo{font-family:'Playfair Display',serif;font-size:17px;color:#fff;letter-spacing:.01em;}
-.nav-logo span{color:#7ab4c0;}
+nav{background:var(--deep-navy);padding:0 36px;height:56px;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:200;border-bottom:1px solid rgba(98,182,203,0.3);}
+.nav-logo{font-family:'Inter',sans-serif;font-size:17px;font-weight:900;color:#fff;letter-spacing:-0.02em;}
+.nav-logo span{color:var(--fresh-sky);}
 .nav-right{display:flex;align-items:center;gap:20px;}
-.nav-pill{background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.12);border-radius:20px;padding:4px 14px;font-size:11px;color:rgba(255,255,255,.65);letter-spacing:.05em;text-transform:uppercase;}
 
 /* ── HERO BAND ── */
-.hero{background:linear-gradient(135deg,var(--ink) 0%,var(--ink2) 100%);padding:36px 40px 32px;position:relative;overflow:hidden;}
+.hero{background:linear-gradient(135deg,var(--deep-navy) 0%,var(--yale-blue) 60%,var(--fresh-sky) 100%);padding:36px 40px 32px;position:relative;overflow:hidden;}
+.hero::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 80% 50%, rgba(98,182,203,0.15) 0%, transparent 60%);pointer-events:none;}
 .hero-inner{max-width:1260px;margin:0 auto;position:relative;z-index:1;}
-.hero h1{font-family:'Playfair Display',serif;font-size:32px;font-weight:400;color:#fff;line-height:1.2;margin-bottom:6px;}
-.hero h1 em{font-style:italic;color:var(--gold-m);}
-.hero p{font-size:14px;color:rgba(255,255,255,.6);margin-bottom:24px;max-width:600px;}
+.hero h1{font-family:'Inter',sans-serif;font-size:32px;font-weight:800;color:#fff;line-height:1.2;margin-bottom:6px;letter-spacing:-0.02em;}
+.hero h1 em{font-style:normal;color:var(--pale-sky);}
+.hero p{font-size:14px;color:rgba(255,255,255,.7);margin-bottom:24px;max-width:600px;}
 .hero-actions{display:flex;gap:10px;flex-wrap:wrap;}
-.btn-ghost{padding:9px 20px;border-radius:8px;border:1.5px solid rgba(255,255,255,.2);background:transparent;color:rgba(255,255,255,.8);font-family:'Outfit',sans-serif;font-size:13px;cursor:pointer;transition:.15s;font-weight:500;}
-.btn-ghost:hover{background:rgba(255,255,255,.1);border-color:rgba(255,255,255,.4);}
-.btn-teal{padding:9px 22px;border-radius:8px;border:none;background:var(--gold);color:#fff;font-family:'Outfit',sans-serif;font-size:13px;font-weight:600;cursor:pointer;transition:.15s;letter-spacing:.02em;}
-.btn-teal:hover{background:#7a5515;}
+.btn-ghost{padding:9px 20px;border-radius:9999px;border:1.5px solid rgba(255,255,255,.25);background:rgba(255,255,255,0.08);color:rgba(255,255,255,.85);font-family:'Inter',sans-serif;font-size:13px;cursor:pointer;transition:.15s;font-weight:600;}
+.btn-ghost:hover{background:rgba(255,255,255,.15);border-color:rgba(255,255,255,.45);}
+.btn-teal{padding:10px 24px;border-radius:16px;border:none;background:linear-gradient(135deg, var(--yale-blue) 0%, var(--fresh-sky) 100%);color:#fff;font-family:'Inter',sans-serif;font-size:13.5px;font-weight:800;cursor:pointer;transition:.2s ease;letter-spacing:.02em;box-shadow:0 6px 24px -4px rgba(27,73,101,0.4);}
+.btn-teal:hover{transform:translateY(-2px);box-shadow:0 8px 28px -4px rgba(27,73,101,0.5);}
 
 /* ── MAIN ── */
 .wrap{max-width:1260px;margin:0 auto;padding:32px 36px 64px;}
@@ -53,52 +66,52 @@ nav{background:var(--ink);padding:0 36px;height:56px;display:flex;align-items:ce
 .dp-head{padding:14px 24px;border-bottom:1px solid var(--line);display:flex;align-items:center;justify-content:space-between;background:var(--card2);}
 .dp-body{padding:20px 24px;}
 textarea{width:100%;height:120px;font-family:monospace;font-size:12px;padding:12px;border:1px solid var(--line2);border-radius:8px;background:var(--card2);outline:none;}
-.btn-sm-primary{padding:7px 16px;border-radius:7px;background:var(--gold);color:#fff;border:none;cursor:pointer;font-family:'Outfit';}
+.btn-sm-primary{padding:7px 16px;border-radius:9999px;background:var(--yale-blue);color:#fff;border:none;cursor:pointer;font-family:'Inter';font-weight:600;}
 
 /* ── SECTION HEADER ── */
 .sec-hd{display:flex;align-items:center;gap:12px;margin:32px 0 20px;}
-.sec-hd h2{font-family:'Playfair Display',serif;font-size:22px;font-weight:400;color:var(--ink);}
+.sec-hd h2{font-family:'Inter',sans-serif;font-size:20px;font-weight:800;color:var(--yale-blue);letter-spacing:-0.02em;}
 .sec-hd-line{flex:1;height:1px;background:var(--line);}
 
 /* ── CHARTS ── */
 .chart-card{background:var(--card);border:1px solid var(--line);border-radius:var(--r2);padding:22px 24px;box-shadow:var(--sh);margin-bottom:24px;}
 .cc-head{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:16px;}
-.cc-title{font-size:14px;font-weight:600;color:var(--ink);}
-.cc-sub{font-size:12px;color:var(--ink4);margin-top:2px;}
+.cc-title{font-size:14px;font-weight:700;color:var(--yale-blue);}
+.cc-sub{font-size:12px;color:var(--steel-blue);margin-top:2px;}
 .ch-wrap{position:relative;width:100%;}
 
 .overall-container { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
 @media(max-width:800px) { .overall-container { grid-template-columns: 1fr; } }
-.opp-box { background: var(--card2); border: 1px solid var(--line); border-radius: 12px; padding: 20px; }
-.opp-title { font-weight: 600; font-size: 13px; color: var(--ink); margin-bottom: 12px; text-transform: uppercase; letter-spacing: .05em; }
+.opp-box { background: var(--pale-sky); border: 1px solid var(--frozen-water); border-radius: 12px; padding: 20px; }
+.opp-title { font-weight: 700; font-size: 11px; color: var(--fresh-sky); margin-bottom: 12px; text-transform: uppercase; letter-spacing: .08em; }
 .opp-list { list-style: none; }
-.opp-list li { font-size: 13px; padding: 10px 0; border-bottom: 1px dashed var(--line2); display:flex; justify-content: space-between; align-items:center;}
+.opp-list li { font-size: 13px; padding: 10px 0; border-bottom: 1px dashed var(--frozen-water); display:flex; justify-content: space-between; align-items:center;}
 .opp-list li:last-child { border-bottom: none; }
-.opp-val { font-weight: 600; color: var(--gold); text-align:right;}
+.opp-val { font-weight: 700; color: var(--yale-blue); text-align:right;}
 
 /* ── HIGHLIGHTS ── */
-.top-highlight-banner { background: #eef2f6; border: 1px solid #cdd7e1; padding: 14px 20px; border-radius: 10px; margin-bottom: 24px; display: flex; align-items: center; justify-content: flex-start; gap: 12px; font-size: 16px; color: #0f1923; box-shadow: 0 2px 8px rgba(0,0,0,0.03); }
-.top-highlight-banner strong { font-weight: 600; color: var(--teal); }
-.top-highlight-banner .badge { background: #fff; padding: 4px 12px; border-radius: 20px; font-size: 13px; font-weight: 500; border: 1px solid #cdd7e1; box-shadow: 0 1px 3px rgba(0,0,0,0.05); }
-.sec-highlight-box { background: var(--card2); border: 1px dashed var(--line2); border-radius: 8px; padding: 12px; text-align: center; margin-bottom: 16px; }
-.sec-highlight-label { font-size: 10px; font-weight: 600; color: var(--ink3); text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 4px; }
-.sec-highlight-value { font-size: 16px; font-weight: 600; color: var(--ink); }
+.top-highlight-banner { background: var(--pale-sky); border: 1px solid var(--frozen-water); padding: 14px 20px; border-radius: 10px; margin-bottom: 24px; display: flex; align-items: center; justify-content: flex-start; gap: 12px; font-size: 16px; color: var(--yale-blue); box-shadow: 0 2px 8px rgba(27,73,101,0.06); }
+.top-highlight-banner strong { font-weight: 700; color: var(--yale-blue); }
+.top-highlight-banner .badge { background: #fff; padding: 4px 12px; border-radius: 9999px; font-size: 13px; font-weight: 600; border: 1px solid var(--frozen-water); box-shadow: 0 1px 3px rgba(27,73,101,0.08); color: var(--fresh-sky); }
+.sec-highlight-box { background: var(--pale-sky); border: 1px dashed var(--frozen-water); border-radius: 8px; padding: 12px; text-align: center; margin-bottom: 16px; }
+.sec-highlight-label { font-size: 10px; font-weight: 700; color: var(--fresh-sky); text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 4px; }
+.sec-highlight-value { font-size: 16px; font-weight: 700; color: var(--yale-blue); }
 
 /* ── SECTION GRIDS ── */
 .section-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(340px, 1fr)); gap: 24px; margin-bottom: 40px; }
 .sc-card { background: var(--card); border: 1px solid var(--line); border-radius: var(--r2); overflow: hidden; box-shadow: var(--sh); display: flex; flex-direction: column; }
-.sc-head { padding: 16px 20px; background: var(--ink); color: #fff; display: flex; justify-content: space-between; align-items: center; }
+.sc-head { padding: 16px 20px; background: var(--yale-blue); color: #fff; display: flex; justify-content: space-between; align-items: center; }
 .sc-head.apt { background: var(--slate); }
-.sc-head h3 { font-family: 'Playfair Display', serif; font-size: 18px; font-weight: 400; margin: 0; }
+.sc-head h3 { font-family: 'Inter', sans-serif; font-size:16px; font-weight: 800; margin: 0; letter-spacing:-0.01em; }
 .sc-body { padding: 20px; display: flex; flex-direction: column; gap: 20px; flex: 1; }
 .sc-doughnut-wrap { height: 180px; position: relative; }
 .trait-list { display: flex; flex-direction: column; gap: 8px; }
-.trait-item { display: flex; justify-content: space-between; align-items: center; font-size: 12px; padding: 6px 10px; background: var(--card2); border-radius: 6px; }
+.trait-item { display: flex; justify-content: space-between; align-items: center; font-size: 12px; padding: 6px 10px; background: var(--card2); border-radius: 6px; border: 1px solid var(--line); }
 .trait-name { font-weight: 500; color: var(--ink2); }
-.trait-score { font-weight: 600; }
+.trait-score { font-weight: 700; color: var(--yale-blue); }
 .rec-box { background: var(--sage-l); border: 1px solid var(--sage-m); border-radius: 8px; padding: 14px; margin-top: auto; }
 .rec-box.apt-box { background: var(--slate-l); border: 1px solid var(--slate-m); }
-.rec-label { font-size: 10px; font-weight: 600; text-transform: uppercase; color: var(--sage); letter-spacing: .05em; margin-bottom: 6px; }
+.rec-label { font-size: 10px; font-weight: 700; text-transform: uppercase; color: var(--sage); letter-spacing: .07em; margin-bottom: 6px; }
 .rec-box.apt-box .rec-label { color: var(--slate); }
 .rec-item { font-size: 12.5px; color: var(--ink); margin-bottom: 6px; line-height: 1.4; display:flex; align-items:flex-start; gap:6px; }
 .rec-item:last-child { margin-bottom: 0; }
@@ -111,9 +124,9 @@ textarea{width:100%;height:120px;font-family:monospace;font-size:12px;padding:12
 @media(max-width:900px){.ins-kpi-row{grid-template-columns:1fr 1fr;}}
 @media(max-width:560px){.ins-kpi-row{grid-template-columns:1fr;}}
 .ins-kpi{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:18px 20px;box-shadow:var(--sh);}
-.ins-kpi-label{font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:.06em;color:var(--ink4);margin-bottom:6px;}
-.ins-kpi-val{font-size:26px;font-weight:600;color:var(--ink);line-height:1;}
-.ins-kpi-sub{font-size:12px;color:var(--ink3);margin-top:5px;}
+.ins-kpi-label{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--fresh-sky);margin-bottom:6px;}
+.ins-kpi-val{font-size:26px;font-weight:700;color:var(--yale-blue);line-height:1;}
+.ins-kpi-sub{font-size:12px;color:var(--steel-blue);margin-top:5px;}
 .ins-kpi.green .ins-kpi-val{color:var(--sage);}
 .ins-kpi.red .ins-kpi-val{color:var(--rose);}
 .ins-kpi.gold .ins-kpi-val{color:var(--gold);}
@@ -121,38 +134,38 @@ textarea{width:100%;height:120px;font-family:monospace;font-size:12px;padding:12
 .insight-block{background:var(--card);border:1px solid var(--line);border-radius:var(--r2);overflow:hidden;box-shadow:var(--sh);margin-bottom:16px;}
 .ib-strip{height:4px;width:100%;}
 .ib-strip.red{background:var(--rose);}
-.ib-strip.green{background:var(--sage);}
+.ib-strip.green{background:var(--fresh-sky);}
 .ib-strip.gold{background:var(--gold);}
-.ib-strip.slate{background:var(--slate);}
+.ib-strip.slate{background:var(--yale-blue);}
 .ib-body{padding:20px 22px;}
 .ib-head{display:flex;align-items:flex-start;justify-content:space-between;gap:12px;margin-bottom:10px;}
-.ib-title{font-size:15px;font-weight:600;color:var(--ink);line-height:1.3;}
-.ib-tag{flex-shrink:0;font-size:10px;font-weight:600;text-transform:uppercase;letter-spacing:.06em;padding:3px 10px;border-radius:20px;}
+.ib-title{font-size:15px;font-weight:700;color:var(--yale-blue);line-height:1.3;}
+.ib-tag{flex-shrink:0;font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.06em;padding:3px 10px;border-radius:9999px;}
 .tag-urgent{background:var(--rose-l);color:var(--rose);}
-.tag-earn{background:var(--sage-l);color:var(--sage);}
+.tag-earn{background:var(--pale-sky);color:var(--yale-blue);}
 .tag-plan{background:var(--slate-l);color:var(--slate);}
 .tag-watch{background:var(--gold-l);color:var(--gold);}
-.ib-what{font-size:13px;color:var(--ink2);line-height:1.6;margin-bottom:14px;}
+.ib-what{font-size:13px;color:var(--steel-blue);line-height:1.6;margin-bottom:14px;}
 .ib-action{background:var(--card2);border:1px solid var(--line);border-radius:8px;padding:12px 14px;}
-.ib-action-label{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.07em;color:var(--ink4);margin-bottom:5px;}
-.ib-action-text{font-size:13px;color:var(--ink);line-height:1.55;}
+.ib-action-label{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.07em;color:var(--fresh-sky);margin-bottom:5px;}
+.ib-action-text{font-size:13px;color:var(--yale-blue);line-height:1.55;}
 .ib-meta{display:flex;gap:8px;flex-wrap:wrap;margin-top:10px;}
-.ib-chip{font-size:11px;padding:3px 10px;border-radius:20px;border:1px solid var(--line2);color:var(--ink3);background:var(--card2);}
+.ib-chip{font-size:11px;padding:3px 10px;border-radius:9999px;border:1px solid var(--frozen-water);color:var(--steel-blue);background:var(--pale-sky);}
 
 .spend-table{width:100%;border-collapse:collapse;font-size:13px;}
-.spend-table th{text-align:left;font-size:11px;font-weight:600;color:var(--ink4);text-transform:uppercase;padding:0 14px 10px;border-bottom:1px solid var(--line);}
-.spend-table td{padding:12px 14px;border-bottom:1px dashed var(--line);}
-.spend-roi{font-size:11px;font-weight:600;padding:2px 8px;border-radius:20px;}
-.roi-high{background:var(--sage-l);color:var(--sage);}
+.spend-table th{text-align:left;font-size:11px;font-weight:700;color:var(--fresh-sky);text-transform:uppercase;padding:0 14px 10px;border-bottom:1px solid var(--line);letter-spacing:.06em;}
+.spend-table td{padding:12px 14px;border-bottom:1px dashed var(--line);vertical-align:middle;}
+.spend-roi{font-size:11px;font-weight:700;padding:2px 8px;border-radius:9999px;}
+.roi-high{background:var(--pale-sky);color:var(--yale-blue);}
 .roi-med{background:var(--gold-l);color:var(--gold);}
 .roi-low{background:var(--rose-l);color:var(--rose);}
 .spend-bar-wrap{height:5px;background:var(--line);border-radius:3px;margin-top:5px;width:140px;}
-.spend-bar-fill{height:100%;border-radius:3px;background:var(--gold);}
+.spend-bar-fill{height:100%;border-radius:3px;background:var(--fresh-sky);}
 
 /* Career Tracks */
 .career-panel{background:var(--card);border:1px solid var(--line);border-radius:var(--r2);box-shadow:var(--sh);margin-bottom:28px;overflow:hidden;}
-.career-panel-head{padding:16px 22px;border-bottom:1px solid var(--line);display:flex;justify-content:space-between;background:var(--card2);}
-.career-panel-title{font-family:'Playfair Display',serif;font-size:18px;}
+.career-panel-head{padding:16px 22px;border-bottom:1px solid var(--line);display:flex;justify-content:space-between;background:var(--pale-sky);}
+.career-panel-title{font-family:'Inter',sans-serif;font-size:16px;font-weight:800;color:var(--yale-blue);letter-spacing:-0.01em;}
 .career-panel-body{display:grid;grid-template-columns:250px 1fr;}
 @media(max-width:860px){.career-panel-body{grid-template-columns:1fr;}}
 .career-doughnut-wrap{padding:20px;border-right:1px solid var(--line);display:flex;flex-direction:column;align-items:center;}
@@ -160,19 +173,59 @@ textarea{width:100%;height:120px;font-family:monospace;font-size:12px;padding:12
 .career-legend-item{display:flex;align-items:center;gap:8px;font-size:12px;padding:3px 0;}
 .career-legend-dot{width:10px;height:10px;border-radius:50%;}
 .career-cards-grid{padding:20px;display:grid;grid-template-columns:repeat(auto-fill,minmax(210px,1fr));gap:12px;}
-.career-card{border:1px solid var(--line);border-radius:12px;padding:14px;position:relative;}
-.career-card-accent{position:absolute;top:0;left:0;width:100%;height:3px;}
-.career-card-name{font-size:13px;font-weight:600;margin:6px 0 3px;}
-.career-card-count{font-size:22px;font-weight:700;}
-.career-card-action{font-size:11px;background:var(--card2);border:1px solid var(--line);border-radius:6px;padding:6px;margin-top:8px;}
+.career-card{border:1px solid var(--line);border-radius:12px;padding:14px;position:relative;background:var(--card);}
+.career-card-accent{position:absolute;top:0;left:0;width:100%;height:3px;border-radius:12px 12px 0 0;}
+.career-card-name{font-size:13px;font-weight:700;margin:6px 0 3px;color:var(--yale-blue);}
+.career-card-count{font-size:22px;font-weight:800;}
+.career-card-action{font-size:11px;background:var(--pale-sky);border:1px solid var(--frozen-water);border-radius:6px;padding:6px;margin-top:8px;}
+
+/* BADGE CSS */
+.align-good{display:inline-flex;align-items:center;justify-content:center;background:var(--sage-l);color:var(--sage);border:1px solid var(--sage-m);padding:4px 12px;border-radius:9999px;font-size:11px;font-weight:700;letter-spacing:.05em;text-transform:uppercase;white-space:nowrap;}
+.align-warn{display:inline-flex;align-items:center;justify-content:center;background:var(--gold-l);color:var(--gold);border:1px solid var(--gold-m);padding:4px 12px;border-radius:9999px;font-size:11px;font-weight:700;letter-spacing:.05em;text-transform:uppercase;white-space:nowrap;}
+.align-risk{display:inline-flex;align-items:center;justify-content:center;background:var(--rose-l);color:var(--rose);border:1px solid var(--rose-m);padding:4px 12px;border-radius:9999px;font-size:11px;font-weight:700;letter-spacing:.05em;text-transform:uppercase;white-space:nowrap;}
+
+.stream-card{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:18px;}
+.stream-card-title{font-size:13px;font-weight:800;color:var(--yale-blue);margin-bottom:14px;}
+.stream-bar-row{display:flex;align-items:center;gap:10px;margin-bottom:8px;}
+.stream-label{font-size:12px;font-weight:600;width:90px;flex-shrink:0;}
+.stream-bar-bg{flex:1;height:8px;background:var(--line);border-radius:4px;overflow:hidden;}
+.stream-bar-fill{height:100%;border-radius:4px;}
+.stream-pct{font-size:12px;font-weight:700;width:36px;text-align:right;}
+.risk-card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:16px;}
+.risk-card.critical{border-color:var(--rose);border-width:2px;}
+.risk-card.warn{border-color:var(--gold);border-width:1.5px;}
+.risk-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:12px;}
+.risk-sec-tag{font-size:14px;font-weight:800;color:var(--yale-blue);}
+.risk-badge-crit{background:var(--rose-l);color:var(--rose);padding:3px 10px;border-radius:9999px;font-size:10px;font-weight:700;text-transform:uppercase;}
+.risk-badge-warn{background:var(--gold-l);color:var(--gold);padding:3px 10px;border-radius:9999px;font-size:10px;font-weight:700;text-transform:uppercase;}
+.risk-badge-ok{background:var(--pale-sky);color:var(--yale-blue);padding:3px 10px;border-radius:9999px;font-size:10px;font-weight:700;text-transform:uppercase;}
+.risk-row{display:flex;justify-content:space-between;font-size:12px;padding:5px 0;border-bottom:1px dashed var(--line);}
+.risk-row:last-of-type{border:none;}
+.risk-row-label{color:var(--steel-blue);}
+.risk-row-val{font-weight:700;color:var(--yale-blue);}
+.scorecard-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:14px;margin-bottom:24px;}
+.scorecard-tile{background:var(--pale-sky);border:1px solid var(--frozen-water);border-radius:14px;padding:16px 18px;text-align:center;}
+.scorecard-tile-val{font-size:28px;font-weight:800;color:var(--yale-blue);line-height:1;}
+.scorecard-tile-label{font-size:11px;font-weight:700;color:var(--fresh-sky);text-transform:uppercase;letter-spacing:.06em;margin-top:6px;}
+.scorecard-tile-sub{font-size:11px;color:var(--steel-blue);margin-top:3px;}
+.scorecard-tile.red-tile{background:var(--rose-l);border-color:var(--rose-m);}
+.scorecard-tile.red-tile .scorecard-tile-val{color:var(--rose);}
+.scorecard-tile.red-tile .scorecard-tile-label{color:var(--rose);}
+.scorecard-tile.green-tile{background:var(--sage-l);border-color:var(--sage-m);}
+.scorecard-tile.green-tile .scorecard-tile-val{color:var(--sage);}
+.scorecard-tile.green-tile .scorecard-tile-label{color:var(--sage);}
+.scorecard-summary-row{display:flex;justify-content:space-between;align-items:center;padding:10px 0;border-bottom:1px dashed var(--line);font-size:13px;}
+.scorecard-summary-row:last-child{border:none;}
+.scorecard-footer{margin-top:20px;padding:14px 18px;background:var(--yale-blue);border-radius:12px;color:#fff;font-size:12px;line-height:1.7;}
+.scorecard-footer strong{color:var(--pale-sky);}
+.grade-pill{display:inline-block;padding:6px 18px;border-radius:9999px;font-size:20px;font-weight:800;}
 </style>
 </head>
 <body>
 
 <nav>
-  <div class="nav-logo">School<span>Analytics</span></div>
+  <div class="nav-logo">School <span>Analytics</span></div>
   <div class="nav-right">
-    <span class="nav-pill">Admin Dashboard View</span>
   </div>
 </nav>
 
@@ -247,79 +300,116 @@ textarea{width:100%;height:120px;font-family:monospace;font-size:12px;padding:12
   <div class="ins-kpi-row fade-in" id="insKpiRow"></div>
 
   <div style="display:flex;gap:0;background:var(--card);border:1px solid var(--line);border-radius:10px;overflow:hidden;margin-bottom:20px;box-shadow:var(--sh);" id="insTabBar">
-    <button onclick="insTab('priority',this)" style="flex:1;padding:11px 0;font-family:'Outfit',sans-serif;font-size:12px;font-weight:600;border:none;background:var(--ink);color:#fff;cursor:pointer;">⚠ Urgent Actions</button>
-    <button onclick="insTab('earn',this)"     style="flex:1;padding:11px 0;font-family:'Outfit',sans-serif;font-size:12px;font-weight:600;border:none;background:transparent;color:var(--ink3);cursor:pointer;">₹ Spend &amp; Earn</button>
-    <button onclick="insTab('sections',this)" style="flex:1;padding:11px 0;font-family:'Outfit',sans-serif;font-size:12px;font-weight:600;border:none;background:transparent;color:var(--ink3);cursor:pointer;">⊞ Section Plans</button>
+    <button onclick="insTab('priority',this)" style="flex:1;padding:11px 0;font-family:'Inter',sans-serif;font-size:12px;font-weight:700;border:none;background:var(--yale-blue);color:#fff;cursor:pointer;">⚠ Urgent Actions</button>
+    <button onclick="insTab('earn',this)"     style="flex:1;padding:11px 0;font-family:'Inter',sans-serif;font-size:12px;font-weight:700;border:none;background:transparent;color:var(--steel-blue);cursor:pointer;">₹ Spend &amp; Earn</button>
+    <button onclick="insTab('sections',this)" style="flex:1;padding:11px 0;font-family:'Inter',sans-serif;font-size:12px;font-weight:700;border:none;background:transparent;color:var(--steel-blue);cursor:pointer;">⊞ Section Plans</button>
   </div>
 
   <div id="ins-priority"></div>
   <div id="ins-earn" style="display:none;"></div>
   <div id="ins-sections" style="display:none;"></div>
 
+  <div class="sec-hd" style="margin-top:48px;">
+    <h2>Aptitude–Interest Alignment Matrix</h2>
+    <div class="sec-hd-line"></div>
+    <span style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--fresh-sky);white-space:nowrap;">Are students chasing the right careers?</span>
+  </div>
+  <div class="chart-card fade-in" style="margin-bottom:24px;">
+    <div style="font-size:13px;color:var(--steel-blue);margin-bottom:16px;line-height:1.6;">
+      Compares each section's <strong>average aptitude score</strong> vs <strong>average interest score</strong> for their top career area. Students with <strong style="color:var(--rose);">high interest but low aptitude</strong> are counseling priority — they risk choosing streams they cannot succeed in.
+    </div>
+    <div style="overflow-x:auto;">
+      <table class="spend-table">
+        <thead><tr>
+          <th>Section</th><th>Top Career Interest</th>
+          <th style="text-align:center;">Avg Interest Score</th>
+          <th style="text-align:center;">Avg Related Aptitude</th>
+          <th style="text-align:center;">Alignment Gap</th>
+          <th>Status</th><th>Principal's Action</th>
+        </tr></thead>
+        <tbody id="alignmentTbody"></tbody>
+      </table>
+    </div>
+  </div>
+
+  <div class="sec-hd" style="margin-top:16px;">
+    <h2>Stream Recommendation Engine</h2>
+    <div class="sec-hd-line"></div>
+    <span style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--fresh-sky);white-space:nowrap;">Science · Commerce · Arts · Vocational</span>
+  </div>
+  <div class="chart-card fade-in">
+    <div style="font-size:13px;color:var(--steel-blue);margin-bottom:20px;">Based on aptitude scores and career interests, here is the recommended stream distribution for each section. Use this to plan stream counseling sessions before Class 9 or 11 allocation.</div>
+    <div id="streamGrid" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:20px;"></div>
+    <div style="margin-top:20px;padding:16px;background:var(--pale-sky);border-radius:12px;border:1px solid var(--frozen-water);">
+      <div style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.07em;color:var(--fresh-sky);margin-bottom:10px;">School-wide Stream Distribution Forecast</div>
+      <div id="streamSchoolBar" style="display:flex;gap:8px;flex-wrap:wrap;align-items:center;"></div>
+    </div>
+  </div>
+
+  <div class="sec-hd" style="margin-top:16px;">
+    <h2>Counseling Priority — Risk Radar</h2>
+    <div class="sec-hd-line"></div>
+    <span style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--rose);white-space:nowrap;">Needs immediate attention</span>
+  </div>
+  <div class="chart-card fade-in">
+    <div style="font-size:13px;color:var(--steel-blue);margin-bottom:16px;line-height:1.6;">
+      Sections with a <strong>critical mismatch</strong> between student ambitions and demonstrated ability. These students are at risk of <strong>wrong stream selection, academic failure, and low career satisfaction</strong>. Schedule counseling before stream allocation.
+    </div>
+    <div id="riskRadarGrid" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:16px;margin-bottom:20px;"></div>
+    <div id="counselingActions"></div>
+  </div>
+
+  <div class="sec-hd" style="margin-top:16px;">
+    <h2>School Health Scorecard</h2>
+    <div class="sec-hd-line"></div>
+    <span style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--fresh-sky);white-space:nowrap;">For PTM · Board Meetings · Annual Reports</span>
+  </div>
+  <div class="chart-card fade-in">
+    <div style="font-size:13px;color:var(--steel-blue);margin-bottom:20px;">At-a-glance snapshot of your school's assessment health. Print or share during Parent-Teacher Meetings or Board reviews.</div>
+    <div id="scorecardContent"></div>
+  </div>
+
 </div>
 
 <script>
-/* ── SAMPLE DATA ── */
+/* ── UPDATED DEFAULT SAMPLE DATA MATCHING THE 7 TARGET APTITUDES ── */
 const SAMPLE = `Section,Test Type,Parameter,Interest Area,Score
-8A,Aptitude,Musical Aptitude,Music Production,95
-8A,Aptitude,Visual Arts,Fine Arts,88
+8A,Aptitude,Perceptual Aptitude,Music Production,95
+8A,Aptitude,Spatial Aptitude,Fine Arts,88
 8A,Aptitude,Language Aptitude,Performing Arts,80
-8A,Aptitude,Physical Endurance,Sports Management,45
-8A,Aptitude,Creative Logic,Design,85
+8A,Aptitude,Mechanical Reasoning,Sports Management,45
+8A,Aptitude,Abstract Reasoning,Design,85
 8A,Interest,Creative Expression,Fine Arts,92
 8A,Interest,Performing Arts,Music Production,90
 8A,Interest,Digital Art,Design,86
 8A,Interest,Storytelling,Journalism,78
-8A,Aptitude,Musical Aptitude,Music Production,91
-8A,Aptitude,Visual Arts,Fine Arts,84
-8A,Interest,Creative Expression,Fine Arts,89
-8B,Aptitude,Physical Endurance,Sports Management,96
-8B,Aptitude,Hand-Eye Coordination,Athletics,92
-8B,Aptitude,Visual Arts,Fine Arts,60
-8B,Aptitude,Musical Aptitude,Music Production,50
+8B,Aptitude,Mechanical Reasoning,Sports Management,96
+8B,Aptitude,Spatial Aptitude,Athletics,92
+8B,Aptitude,Perceptual Aptitude,Fine Arts,60
 8B,Aptitude,Language Aptitude,Sports Management,70
 8B,Interest,Physical Activity,Sports Management,95
 8B,Interest,Team Leadership,Athletics,88
-8B,Interest,Creative Expression,Fine Arts,65
-8B,Aptitude,Physical Endurance,Sports Management,94
-8B,Aptitude,Hand-Eye Coordination,Athletics,89
-8B,Interest,Physical Activity,Sports Management,92
 8C,Aptitude,Language Aptitude,Journalism,92
-8C,Aptitude,Visual Arts,Journalism,75
+8C,Aptitude,Spatial Aptitude,Journalism,75
 8C,Aptitude,Verbal Reasoning,Law & Public Policy,88
-8C,Aptitude,Physical Endurance,Sports Management,55
-8C,Aptitude,Musical Aptitude,Music Production,60
+8C,Aptitude,Mechanical Reasoning,Sports Management,55
 8C,Interest,Storytelling,Journalism,94
 8C,Interest,Public Speaking,Journalism,88
-8C,Interest,Debate & Negotiation,Law & Public Policy,85
-8C,Aptitude,Language Aptitude,Journalism,89
-8C,Aptitude,Verbal Reasoning,Law & Public Policy,86
-8C,Interest,Storytelling,Journalism,91
 8D,Aptitude,Numerical Aptitude,Technology,94
 8D,Aptitude,Abstract Reasoning,Robotics,90
-8D,Aptitude,Coding Logic,Software Development,88
+8D,Aptitude,Spatial Aptitude,Software Development,88
 8D,Aptitude,Language Aptitude,Technology,65
-8D,Aptitude,Creative Logic,Software Development,75
 8D,Interest,Analytical Problem-Solving,Technology,96
 8D,Interest,System Building,Robotics,92
-8D,Interest,Digital Art,Software Development,70
-8D,Aptitude,Numerical Aptitude,Technology,92
-8D,Aptitude,Coding Logic,Software Development,85
-8D,Interest,Analytical Problem-Solving,Technology,94
-8E,Aptitude,Financial Literacy,Finance,88
+8E,Aptitude,Numerical Aptitude,Finance,88
 8E,Aptitude,Verbal Reasoning,Business Management,85
-8E,Aptitude,Organization Skills,Entrepreneurship,92
-8E,Aptitude,Abstract Reasoning,Finance,70
-8E,Aptitude,Physical Endurance,Business Management,50
+8E,Aptitude,Abstract Reasoning,Entrepreneurship,92
+8E,Aptitude,Mechanical Reasoning,Finance,70
 8E,Interest,Wealth Management,Finance,90
-8E,Interest,Business Strategy,Business Management,95
-8E,Interest,Team Leadership,Entrepreneurship,89
-8E,Aptitude,Financial Literacy,Finance,86
-8E,Aptitude,Organization Skills,Entrepreneurship,89
-8E,Interest,Business Strategy,Business Management,93`;
+8E,Interest,Business Strategy,Business Management,95`;
 
 /* ── DYNAMIC GENERATORS ── */
-const THEME_COLORS = ['#1a5c6b', '#9a6b1a', '#2a5a3a', '#7a2a3a', '#4a1a6a', '#7a3a1a', '#2c3a4a', '#8abf9a', '#c88a96', '#b0d4db', '#d4b06a'];
+const THEME_COLORS = ['#1b4965', '#5fa8d3', '#62b6cb', '#025782', '#4a7a96', '#0e2b3c', '#b5833d', '#cae9ff', '#bee9e8', '#3a7fa8', '#2980b9'];
 let colorCache = {};
 let colorIdx = 0;
 function getColor(key) {
@@ -386,38 +476,46 @@ let DYN_APT = [];
 let DYN_INT = [];
 
 function go() {
-  document.getElementById('csv').value = document.getElementById('csv').value || SAMPLE;
-  const rows = parseCSV(document.getElementById('csv').value);
-  const secs = [...new Set(rows.map(r=>r['Section']))].filter(Boolean).sort();
-  
-  // FIXED to only include the 7 required Aptitude parameters
-  DYN_APT = [
-    'Abstract Reasoning',
-    'Language Aptitude',
-    'Mechanical Reasoning',
-    'Numerical Aptitude',
-    'Perceptual Aptitude',
-    'Spatial Aptitude',
-    'Verbal Reasoning'
-  ];
-  
-  DYN_INT = [...new Set(rows.filter(r=>r['Test Type']==='Interest').map(r=>r['Parameter']))].filter(Boolean);
+  try {
+    document.getElementById('csv').value = document.getElementById('csv').value || SAMPLE;
+    const rows = parseCSV(document.getElementById('csv').value);
+    const secs = [...new Set(rows.map(r=>r['Section']))].filter(Boolean).sort();
+    
+    // EXACT MATCH to 7 requested parameters
+    DYN_APT = [
+      'Abstract Reasoning',
+      'Language Aptitude',
+      'Mechanical Reasoning',
+      'Numerical Aptitude',
+      'Perceptual Aptitude',
+      'Spatial Aptitude',
+      'Verbal Reasoning'
+    ];
+    
+    DYN_INT = [...new Set(rows.filter(r=>r['Test Type']==='Interest').map(r=>r['Parameter']))].filter(Boolean);
 
-  const aptRows=rows.filter(r=>r['Test Type']==='Aptitude');
-  const aptMap={};
-  secs.forEach(s=>{
-    aptMap[s]={};
-    DYN_APT.forEach(p=>{
-      const vs=aptRows.filter(r=>r['Section']===s&&r['Parameter']===p).map(r=>parseFloat(r['Score'])).filter(v=>!isNaN(v));
-      aptMap[s][p]=vs.length?avg(vs):null;
+    const aptRows=rows.filter(r=>r['Test Type']==='Aptitude');
+    const aptMap={};
+    secs.forEach(s=>{
+      aptMap[s]={};
+      DYN_APT.forEach(p=>{
+        const vs=aptRows.filter(r=>r['Section']===s&&r['Parameter']===p).map(r=>parseFloat(r['Score'])).filter(v=>!isNaN(v));
+        aptMap[s][p]=vs.length?avg(vs):null;
+      });
     });
-  });
 
-  renderOverallDoughnut(rows);
-  renderSectionGrids(secs, rows);
-  renderOverallAptitude(rows);
-  renderAptSectionGrids(secs, aptMap);
-  buildInsights(rows);
+    renderOverallDoughnut(rows);
+    renderSectionGrids(secs, rows);
+    renderOverallAptitude(rows);
+    renderAptSectionGrids(secs, aptMap);
+    buildInsights(rows);
+    buildAlignmentMatrix(rows, secs, aptMap);
+    buildStreamRecommendations(rows, secs, aptMap);
+    buildRiskRadar(rows, secs, aptMap);
+    buildHealthScorecard(rows, secs, aptMap);
+  } catch (err) {
+    console.error("Dashboard Render Error: ", err);
+  }
 }
 
 function renderOverallDoughnut(rows){
@@ -558,8 +656,8 @@ function renderOverallAptitude(rows) {
       datasets: [{
         label: 'School Avg Score',
         data: aptAverages.map(a => r1(a.avg)),
-        backgroundColor: 'rgba(42, 58, 106, 0.8)',
-        borderColor: 'var(--slate)',
+        backgroundColor: '#CFAF74', // Updated: Main Logo Color (Gold)
+        borderColor: '#b8985c',
         borderWidth: 1.5,
         borderRadius: 4
       }]
@@ -631,7 +729,7 @@ function renderAptSectionGrids(secs, aptMap) {
       type: 'bar',
       data: {
         labels: DYN_APT.map(p => p.split(' ')[0]), 
-        datasets: [{ data: data, backgroundColor: 'var(--slate-m)', borderRadius: 3 }]
+        datasets: [{ data: data, backgroundColor: '#e6d5b0', borderRadius: 3 }] // Updated: Lighter shade of logo color
       },
       options: { responsive: true, maintainAspectRatio: false, plugins: { legend: { display: false } }, scales: { y: { min: 0, max: 100 }, x: { ticks: { font: { size: 9 } } } } }
     });
@@ -803,10 +901,320 @@ function insightBlock(color, tag, title, what, action, chips) {
 function insTab(id, btn) {
   ['priority','earn','sections'].forEach(t => document.getElementById('ins-'+t).style.display = t === id ? 'block' : 'none');
   document.querySelectorAll('#insTabBar button').forEach(b => { b.style.background = 'transparent'; b.style.color = 'var(--ink3)'; });
-  btn.style.background = 'var(--ink)'; btn.style.color = '#fff';
+  btn.style.background = 'var(--yale-blue)'; btn.style.color = '#fff';
 }
 
 function togglePanel() { const p=document.getElementById('dp'); p.style.display = p.style.display==='none'||p.style.display===''?'block':'none'; }
+
+/* ══════════════════════════════════════════════════════
+   CAREER → STREAM MAPPING
+   Maps known career interest areas to academic streams
+══════════════════════════════════════════════════════ */
+function getStream(career) {
+  const c = (career || '').toLowerCase();
+  if (/tech|robot|software|coding|computer|engineer|science|math|physics|chem|bio|medical|research|data|ai|cybersec/i.test(c)) return 'Science';
+  if (/finance|business|management|commerce|account|economics|bank|entrepreneur|market|trade|invest/i.test(c)) return 'Commerce';
+  if (/arts|music|design|perform|journal|law|literature|history|geograph|political|film|media|creative|writing|dance|theater|cinema/i.test(c)) return 'Arts';
+  if (/sports|athletics|physical|craft|skill|vocation|trade|techni|mechanic|fashion|culinary|hotel|tourism/i.test(c)) return 'Vocational';
+  return 'Arts'; // default
+}
+
+const STREAM_COLORS = {
+  'Science':   { fill:'#1b4965', text:'#fff',      light:'#cae9ff' },
+  'Commerce':  { fill:'#b5833d', text:'#fff',      light:'#fef3e2' },
+  'Arts':      { fill:'#025782', text:'#fff',      light:'#e0f0fb' },
+  'Vocational':{ fill:'#1b7a4a', text:'#fff',      light:'#e3f5ec' }
+};
+
+/* ══ SECTION 1: ALIGNMENT MATRIX ══ */
+function buildAlignmentMatrix(rows, secs, aptMap) {
+  const tbody = document.getElementById('alignmentTbody');
+  if (!tbody) return;
+  let html = '';
+
+  secs.forEach(s => {
+    const careerCounts = {};
+    rows.filter(r => r['Section'] === s && r['Interest Area']).forEach(r => {
+      careerCounts[r['Interest Area']] = (careerCounts[r['Interest Area']] || 0) + 1;
+    });
+    const topCareer = Object.entries(careerCounts).sort((a,b) => b[1]-a[1])[0]?.[0] || 'General';
+
+    const intVals = rows.filter(r => r['Section'] === s && r['Test Type'] === 'Interest').map(r => parseFloat(r['Score'])).filter(v => !isNaN(v));
+    const avgInt = intVals.length ? r1(avg(intVals)) : null;
+
+    const aptVals = rows.filter(r => r['Section'] === s && r['Test Type'] === 'Aptitude').map(r => parseFloat(r['Score'])).filter(v => !isNaN(v));
+    const avgApt = aptVals.length ? r1(avg(aptVals)) : null;
+
+    const gap = (avgInt !== null && avgApt !== null) ? r1(avgInt - avgApt) : null;
+
+    let statusClass, statusText, action;
+    if (gap === null) { statusClass = 'align-good'; statusText = 'Insufficient data'; action = 'Collect more data'; }
+    else if (gap <= 5) { statusClass = 'align-good'; statusText = '✓ Well Aligned'; action = 'Maintain current career guidance pathway'; }
+    else if (gap <= 20) { statusClass = 'align-warn'; statusText = '⚠ Moderate Gap'; action = 'Group counseling session recommended before stream selection'; }
+    else { statusClass = 'align-risk'; statusText = '✗ High Risk'; action = 'URGENT: 1-on-1 counseling required. Risk of wrong stream selection.'; }
+
+    const gapColor = gap === null ? 'var(--steel-blue)' : gap <= 5 ? 'var(--sage)' : gap <= 20 ? 'var(--gold)' : 'var(--rose)';
+
+    html += `<tr>
+      <td><strong style="color:var(--yale-blue);">Section ${s}</strong></td>
+      <td style="color:var(--ink2);">${topCareer}</td>
+      <td style="text-align:center;font-weight:700;color:var(--fresh-sky);">${avgInt !== null ? avgInt + '/100' : '—'}</td>
+      <td style="text-align:center;font-weight:700;color:var(--yale-blue);">${avgApt !== null ? avgApt + '/100' : '—'}</td>
+      <td style="text-align:center;"><strong style="color:${gapColor};">${gap !== null ? (gap > 0 ? '+' : '') + gap : '—'}</strong></td>
+      <td><span class="${statusClass}">${statusText}</span></td>
+      <td style="font-size:12px;color:var(--steel-blue);">${action}</td>
+    </tr>`;
+  });
+  tbody.innerHTML = html;
+}
+
+/* ══ SECTION 2: STREAM RECOMMENDATIONS ══ */
+function buildStreamRecommendations(rows, secs, aptMap) {
+  const grid = document.getElementById('streamGrid');
+  if (!grid) return;
+
+  const schoolStreamCounts = { Science: 0, Commerce: 0, Arts: 0, Vocational: 0 };
+  let html = '';
+
+  secs.forEach(s => {
+    const secRows = rows.filter(r => r['Section'] === s && r['Interest Area']);
+    const streamScores = { Science: [], Commerce: [], Arts: [], Vocational: [] };
+
+    secRows.forEach(r => {
+      const stream = getStream(r['Interest Area']);
+      const score = parseFloat(r['Score']);
+      if (!isNaN(score)) streamScores[stream].push(score);
+    });
+
+    const aptSec = aptMap[s] || {};
+    if (aptSec['Numerical Aptitude'] > 75) streamScores['Science'].push(aptSec['Numerical Aptitude']);
+    if (aptSec['Abstract Reasoning'] > 70) streamScores['Science'].push(aptSec['Abstract Reasoning']);
+    if (aptSec['Verbal Reasoning'] > 70) streamScores['Arts'].push(aptSec['Verbal Reasoning']);
+    if (aptSec['Language Aptitude'] > 70) streamScores['Arts'].push(aptSec['Language Aptitude']);
+    if (aptSec['Mechanical Reasoning'] > 65) streamScores['Vocational'].push(aptSec['Mechanical Reasoning']);
+
+    const streamAvgs = {};
+    let total = 0;
+    Object.entries(streamScores).forEach(([k, v]) => {
+      streamAvgs[k] = v.length ? avg(v) : 0;
+      total += streamAvgs[k];
+    });
+    if (!total) total = 1;
+
+    const streamPcts = {};
+    Object.entries(streamAvgs).forEach(([k, v]) => {
+      streamPcts[k] = Math.round(v / total * 100);
+      schoolStreamCounts[k] += streamPcts[k];
+    });
+
+    const topStream = Object.entries(streamPcts).sort((a,b) => b[1]-a[1])[0][0];
+    const col = STREAM_COLORS[topStream];
+
+    const barsHtml = Object.entries(streamPcts).sort((a,b) => b[1]-a[1]).map(([stream, pct]) => {
+      const sc = STREAM_COLORS[stream];
+      return `<div class="stream-bar-row">
+        <span class="stream-label" style="color:${sc.fill};">${stream}</span>
+        <div class="stream-bar-bg"><div class="stream-bar-fill" style="width:${pct}%;background:${sc.fill};"></div></div>
+        <span class="stream-pct" style="color:${sc.fill};">${pct}%</span>
+      </div>`;
+    }).join('');
+
+    html += `<div class="stream-card fade-in">
+      <div class="stream-card-title">Section ${s} — Stream Profile</div>
+      ${barsHtml}
+      <div style="margin-top:12px;padding:10px;background:${col.light};border-radius:8px;font-size:12px;">
+        <strong style="color:${col.fill};">Recommended: ${topStream}</strong><br>
+        <span style="color:var(--steel-blue);">Dominant interest aligns with <strong>${topStream}</strong> stream. Prioritise counseling accordingly.</span>
+      </div>
+    </div>`;
+  });
+
+  grid.innerHTML = html;
+
+  const total = Object.values(schoolStreamCounts).reduce((a,b) => a+b, 0) || 1;
+  document.getElementById('streamSchoolBar').innerHTML = Object.entries(schoolStreamCounts)
+    .sort((a,b) => b[1]-a[1])
+    .map(([stream, cnt]) => {
+      const pct = Math.round(cnt / total * 100);
+      const sc = STREAM_COLORS[stream];
+      return `<div style="display:flex;align-items:center;gap:6px;background:${sc.light};border-radius:9999px;padding:5px 14px;">
+        <span style="width:10px;height:10px;border-radius:50%;background:${sc.fill};display:inline-block;"></span>
+        <span style="font-size:12px;font-weight:700;color:${sc.fill};">${stream} ${pct}%</span>
+      </div>`;
+    }).join('');
+}
+
+/* ══ SECTION 3: RISK RADAR ══ */
+function buildRiskRadar(rows, secs, aptMap) {
+  const grid = document.getElementById('riskRadarGrid');
+  const actionsDiv = document.getElementById('counselingActions');
+  if (!grid) return;
+
+  let html = '';
+  let critCount = 0;
+  let counselingHtml = '';
+
+  secs.forEach(s => {
+    const intVals = rows.filter(r => r['Section'] === s && r['Test Type'] === 'Interest').map(r => parseFloat(r['Score'])).filter(v => !isNaN(v));
+    const aptVals = rows.filter(r => r['Section'] === s && r['Test Type'] === 'Aptitude').map(r => parseFloat(r['Score'])).filter(v => !isNaN(v));
+    const avgInt = intVals.length ? r1(avg(intVals)) : 0;
+    const avgApt = aptVals.length ? r1(avg(aptVals)) : 0;
+    const gap = r1(avgInt - avgApt);
+
+    const aptSec = aptMap[s] || {};
+    const aptEntries = Object.entries(aptSec).filter(([,v]) => v !== null);
+    const weakestApt = aptEntries.sort((a,b) => a[1]-b[1])[0];
+    const strongestApt = aptEntries.sort((a,b) => b[1]-a[1])[0];
+
+    const careerCounts = {};
+    rows.filter(r => r['Section'] === s && r['Interest Area']).forEach(r => {
+      careerCounts[r['Interest Area']] = (careerCounts[r['Interest Area']] || 0) + 1;
+    });
+    const topCareer = Object.entries(careerCounts).sort((a,b) => b[1]-a[1])[0]?.[0] || '—';
+
+    const atRiskScore = avgApt < 60 ? 'critical' : gap > 20 ? 'warn' : 'ok';
+    if (atRiskScore === 'critical') critCount++;
+
+    const badgeHtml = atRiskScore === 'critical'
+      ? `<span class="risk-badge-crit">&#9888; Critical</span>`
+      : atRiskScore === 'warn'
+      ? `<span class="risk-badge-warn">&#9888; Watch</span>`
+      : `<span class="risk-badge-ok">&#10003; OK</span>`;
+
+    const examReady = avgApt >= 70 ? 'Ready' : avgApt >= 55 ? 'Needs Prep' : 'Not Ready';
+    const examColor = avgApt >= 70 ? 'var(--sage)' : avgApt >= 55 ? 'var(--gold)' : 'var(--rose)';
+
+    const syncPct = Math.min(100, Math.max(0, Math.round((avgApt / (avgInt || 1)) * 100)));
+
+    html += `<div class="risk-card ${atRiskScore !== 'ok' ? atRiskScore : ''}">
+      <div class="risk-header">
+        <span class="risk-sec-tag">Section ${s}</span>
+        ${badgeHtml}
+      </div>
+      <div class="risk-row"><span class="risk-row-label">Avg Interest Score</span><span class="risk-row-val">${avgInt}/100</span></div>
+      <div class="risk-row"><span class="risk-row-label">Avg Aptitude Score</span><span class="risk-row-val" style="color:${avgApt<60?'var(--rose)':'var(--sage);'}">${avgApt}/100</span></div>
+      <div class="risk-row"><span class="risk-row-label">Interest–Aptitude Sync</span><span class="risk-row-val" style="color:${syncPct>=80?'var(--sage)':syncPct>=60?'var(--gold)':'var(--rose);'}">${syncPct}%</span></div>
+      <div class="risk-row"><span class="risk-row-label">Top Career Aspiration</span><span class="risk-row-val">${topCareer}</span></div>
+      <div class="risk-row"><span class="risk-row-label">Weakest Aptitude</span><span class="risk-row-val" style="color:var(--rose);">${weakestApt ? weakestApt[0].split(' ')[0] + ' (' + r1(weakestApt[1]) + ')' : '—'}</span></div>
+      <div class="risk-row"><span class="risk-row-label">Strongest Aptitude</span><span class="risk-row-val" style="color:var(--sage);">${strongestApt ? strongestApt[0].split(' ')[0] + ' (' + r1(strongestApt[1]) + ')' : '—'}</span></div>
+      <div class="risk-row"><span class="risk-row-label">Exam Readiness</span><span class="risk-row-val" style="color:${examColor};">${examReady}</span></div>
+    </div>`;
+
+    if (atRiskScore !== 'ok') {
+      counselingHtml += insightBlock(
+        atRiskScore === 'critical' ? 'red' : 'gold',
+        atRiskScore === 'critical' ? 'urgent' : 'watch',
+        `Section ${s} — ${atRiskScore === 'critical' ? 'Critical Counseling Required' : 'Counseling Recommended'}`,
+        `Average aptitude score is <strong>${avgApt}/100</strong> against interest score of <strong>${avgInt}/100</strong> (Gap: <strong>+${gap}</strong>). Top aspiration is <strong>${topCareer}</strong> but aptitude readiness is ${atRiskScore === 'critical' ? 'critically below threshold' : 'below desired levels'}. Weakest area: <strong>${weakestApt ? weakestApt[0] : 'Unknown'}</strong>.`,
+        atRiskScore === 'critical'
+          ? `1. Schedule immediate 1-on-1 counseling sessions for all students in Section ${s}. 2. Inform parents before stream allocation. 3. Provide targeted remedial support for ${weakestApt ? weakestApt[0] : 'core aptitude areas'}.`
+          : `1. Arrange group counseling session for Section ${s}. 2. Highlight aptitude gap before stream selection. 3. Offer bridge course for ${weakestApt ? weakestApt[0] : 'aptitude improvement'}.`,
+        [`Section ${s}`, `Gap: +${gap}`, examReady]
+      );
+    }
+  });
+
+  grid.innerHTML = html;
+  actionsDiv.innerHTML = counselingHtml || `<div style="padding:16px;color:var(--steel-blue);font-size:13px;">&#10003; All sections show acceptable aptitude-interest alignment. Continue regular monitoring.</div>`;
+}
+
+/* ══ SECTION 4: SCHOOL HEALTH SCORECARD ══ */
+function buildHealthScorecard(rows, secs, aptMap) {
+  const div = document.getElementById('scorecardContent');
+  if (!div) return;
+
+  const totalStudents = [...new Set(rows.map(r => r['Section'] + '_' + (rows.indexOf(r))))].length;
+  const totalResponses = rows.length;
+
+  const allAptVals = rows.filter(r => r['Test Type'] === 'Aptitude').map(r => parseFloat(r['Score'])).filter(v => !isNaN(v));
+  const schoolAvgApt = allAptVals.length ? r1(avg(allAptVals)) : 0;
+
+  const allIntVals = rows.filter(r => r['Test Type'] === 'Interest').map(r => parseFloat(r['Score'])).filter(v => !isNaN(v));
+  const schoolAvgInt = allIntVals.length ? r1(avg(allIntVals)) : 0;
+
+  let sectionsAtRisk = 0, sectionsStrong = 0;
+  secs.forEach(s => {
+    const aptVals = rows.filter(r => r['Section'] === s && r['Test Type'] === 'Aptitude').map(r => parseFloat(r['Score'])).filter(v => !isNaN(v));
+    const a = aptVals.length ? avg(aptVals) : 0;
+    if (a < 60) sectionsAtRisk++;
+    else if (a >= 75) sectionsStrong++;
+  });
+
+  const careerCounts = {};
+  rows.filter(r => r['Interest Area']).forEach(r => { careerCounts[r['Interest Area']] = (careerCounts[r['Interest Area']] || 0) + 1; });
+  const topCareer = Object.entries(careerCounts).sort((a,b) => b[1]-a[1])[0]?.[0] || '—';
+
+  const dimAvgs = {};
+  DYN_APT.forEach(p => {
+    const vs = rows.filter(r => r['Test Type'] === 'Aptitude' && r['Parameter'] === p).map(r => parseFloat(r['Score'])).filter(v => !isNaN(v));
+    if (vs.length) dimAvgs[p] = avg(vs);
+  });
+  const dimSorted = Object.entries(dimAvgs).sort((a,b) => b[1]-a[1]);
+  const bestDim = dimSorted[0];
+  const weakDim = dimSorted[dimSorted.length - 1];
+
+  const gradeScore = schoolAvgApt;
+  const grade = gradeScore >= 85 ? 'A+' : gradeScore >= 75 ? 'A' : gradeScore >= 65 ? 'B+' : gradeScore >= 55 ? 'B' : gradeScore >= 45 ? 'C' : 'D';
+
+  const streamTotals = { Science: 0, Commerce: 0, Arts: 0, Vocational: 0 };
+  rows.filter(r => r['Interest Area']).forEach(r => { const s = getStream(r['Interest Area']); streamTotals[s]++; });
+  const streamTotal = Object.values(streamTotals).reduce((a,b) => a+b, 0) || 1;
+  const topStream = Object.entries(streamTotals).sort((a,b) => b[1]-a[1])[0][0];
+
+  const today = new Date().toLocaleDateString('en-IN', { day:'numeric', month:'long', year:'numeric' });
+
+  div.innerHTML = `
+    <div class="scorecard-grid">
+      <div class="scorecard-tile">
+        <div class="scorecard-tile-val">${secs.length}</div>
+        <div class="scorecard-tile-label">Sections Assessed</div>
+        <div class="scorecard-tile-sub">${totalResponses} total data points</div>
+      </div>
+      <div class="scorecard-tile ${schoolAvgApt >= 70 ? 'green-tile' : schoolAvgApt >= 55 ? '' : 'red-tile'}">
+        <div class="scorecard-tile-val">${schoolAvgApt}</div>
+        <div class="scorecard-tile-label">School Avg Aptitude</div>
+        <div class="scorecard-tile-sub">Out of 100</div>
+      </div>
+      <div class="scorecard-tile">
+        <div class="scorecard-tile-val">${schoolAvgInt}</div>
+        <div class="scorecard-tile-label">School Avg Interest</div>
+        <div class="scorecard-tile-sub">Engagement score</div>
+      </div>
+      <div class="scorecard-tile ${sectionsAtRisk > 0 ? 'red-tile' : 'green-tile'}">
+        <div class="scorecard-tile-val">${sectionsAtRisk}</div>
+        <div class="scorecard-tile-label">Sections At Risk</div>
+        <div class="scorecard-tile-sub">Aptitude avg below 60</div>
+      </div>
+      <div class="scorecard-tile green-tile">
+        <div class="scorecard-tile-val">${sectionsStrong}</div>
+        <div class="scorecard-tile-label">High-Performing Sections</div>
+        <div class="scorecard-tile-sub">Aptitude avg above 75</div>
+      </div>
+      <div class="scorecard-tile" style="background:var(--yale-blue);border-color:var(--yale-blue);">
+        <div class="scorecard-tile-val" style="color:var(--pale-sky);font-size:36px;">${grade}</div>
+        <div class="scorecard-tile-label" style="color:var(--frozen-water);">School Grade</div>
+        <div class="scorecard-tile-sub" style="color:rgba(255,255,255,.6);">Based on avg aptitude</div>
+      </div>
+    </div>
+
+    <div style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.07em;color:var(--fresh-sky);margin-bottom:10px;">Key Findings Summary</div>
+    <div style="background:var(--card2);border:1px solid var(--line);border-radius:12px;padding:4px 16px;margin-bottom:20px;">
+      <div class="scorecard-summary-row"><span style="color:var(--steel-blue);">&#127919; Top Career Aspiration School-wide</span><strong style="color:var(--yale-blue);">${topCareer}</strong></div>
+      <div class="scorecard-summary-row"><span style="color:var(--steel-blue);">&#128200; Recommended Stream for Majority</span><strong style="color:${STREAM_COLORS[topStream].fill};">${topStream} (${Math.round(streamTotals[topStream]/streamTotal*100)}% students)</strong></div>
+      <div class="scorecard-summary-row"><span style="color:var(--steel-blue);">&#127942; Strongest Aptitude Dimension</span><strong style="color:var(--sage);">${bestDim ? bestDim[0] + ' — ' + r1(bestDim[1]) + '/100' : '—'}</strong></div>
+      <div class="scorecard-summary-row"><span style="color:var(--steel-blue);">&#9888;&#65039; Weakest Aptitude Dimension</span><strong style="color:var(--rose);">${weakDim ? weakDim[0] + ' — ' + r1(weakDim[1]) + '/100' : '—'}</strong></div>
+      <div class="scorecard-summary-row"><span style="color:var(--steel-blue);">&#128218; Sections Needing Remediation</span><strong style="color:${sectionsAtRisk>0?'var(--rose)':'var(--sage);'}"> ${sectionsAtRisk > 0 ? sectionsAtRisk + ' section(s) flagged' : 'None — all clear'}</strong></div>
+      <div class="scorecard-summary-row"><span style="color:var(--steel-blue);">&#128197; Report Generated</span><strong style="color:var(--steel-blue);">${today}</strong></div>
+    </div>
+
+    <div class="scorecard-footer">
+      <strong>For the Principal / School Administrator:</strong> This report is based on the assessment data. The overall school aptitude grade is <strong>${grade} (${schoolAvgApt}/100)</strong>.
+      ${sectionsAtRisk > 0 ? `<strong style="color:#fca5a5;"> &#9888; ${sectionsAtRisk} section(s) require immediate counseling attention before stream allocation.</strong>` : ' All sections are performing above the minimum threshold.'}
+      The dominant career aspiration is <strong>${topCareer}</strong>, suggesting the school should prioritise <strong>${topStream}</strong> stream resources and workshops.
+      Weak dimension: <strong>${weakDim ? weakDim[0] : '—'}</strong> — recommend a school-wide remedial initiative.
+    </div>
+  `;
+}
 
 window.onload = go;
 </script>
