@@ -259,24 +259,66 @@ textarea{width:100%;height:120px;font-family:monospace;font-size:12px;padding:12
 </div>
 
 <script>
-/* ── SAMPLE DATA (Dynamic Template) ── */
+/* ── UPDATED SAMPLE DATA ── */
 const SAMPLE = `Section,Test Type,Parameter,Interest Area,Score
-10_Voc,Aptitude,Culinary Logic,Culinary Arts,90
-10_Voc,Aptitude,Hospitality EQ,Hotel Management,85
-10_Voc,Aptitude,Event Planning Aptitude,Event Management,75
-10_Voc,Aptitude,Numerical Aptitude,Culinary Arts,60
-10_Voc,Interest,Food & Beverage,Culinary Arts,95
-10_Voc,Interest,Customer Service,Hotel Management,88
-10_Voc,Interest,Creative Plating,Culinary Arts,92
-10_Comm,Aptitude,Event Planning Aptitude,Event Management,92
-10_Comm,Aptitude,Hospitality EQ,Hotel Management,88
-10_Comm,Aptitude,Numerical Aptitude,Event Management,70
-10_Comm,Aptitude,Culinary Logic,Culinary Arts,50
-10_Comm,Interest,Logistics & Planning,Event Management,94
-10_Comm,Interest,Customer Service,Hotel Management,85`;
+8A,Aptitude,Musical Aptitude,Music Production,95
+8A,Aptitude,Visual Arts,Fine Arts,88
+8A,Aptitude,Language Aptitude,Performing Arts,80
+8A,Aptitude,Physical Endurance,Sports Management,45
+8A,Aptitude,Creative Logic,Design,85
+8A,Interest,Creative Expression,Fine Arts,92
+8A,Interest,Performing Arts,Music Production,90
+8A,Interest,Digital Art,Design,86
+8A,Interest,Storytelling,Journalism,78
+8A,Aptitude,Musical Aptitude,Music Production,91
+8A,Aptitude,Visual Arts,Fine Arts,84
+8A,Interest,Creative Expression,Fine Arts,89
+8B,Aptitude,Physical Endurance,Sports Management,96
+8B,Aptitude,Hand-Eye Coordination,Athletics,92
+8B,Aptitude,Visual Arts,Fine Arts,60
+8B,Aptitude,Musical Aptitude,Music Production,50
+8B,Aptitude,Language Aptitude,Sports Management,70
+8B,Interest,Physical Activity,Sports Management,95
+8B,Interest,Team Leadership,Athletics,88
+8B,Interest,Creative Expression,Fine Arts,65
+8B,Aptitude,Physical Endurance,Sports Management,94
+8B,Aptitude,Hand-Eye Coordination,Athletics,89
+8B,Interest,Physical Activity,Sports Management,92
+8C,Aptitude,Language Aptitude,Journalism,92
+8C,Aptitude,Visual Arts,Journalism,75
+8C,Aptitude,Verbal Reasoning,Law & Public Policy,88
+8C,Aptitude,Physical Endurance,Sports Management,55
+8C,Aptitude,Musical Aptitude,Music Production,60
+8C,Interest,Storytelling,Journalism,94
+8C,Interest,Public Speaking,Journalism,88
+8C,Interest,Debate & Negotiation,Law & Public Policy,85
+8C,Aptitude,Language Aptitude,Journalism,89
+8C,Aptitude,Verbal Reasoning,Law & Public Policy,86
+8C,Interest,Storytelling,Journalism,91
+8D,Aptitude,Numerical Aptitude,Technology,94
+8D,Aptitude,Abstract Reasoning,Robotics,90
+8D,Aptitude,Coding Logic,Software Development,88
+8D,Aptitude,Language Aptitude,Technology,65
+8D,Aptitude,Creative Logic,Software Development,75
+8D,Interest,Analytical Problem-Solving,Technology,96
+8D,Interest,System Building,Robotics,92
+8D,Interest,Digital Art,Software Development,70
+8D,Aptitude,Numerical Aptitude,Technology,92
+8D,Aptitude,Coding Logic,Software Development,85
+8D,Interest,Analytical Problem-Solving,Technology,94
+8E,Aptitude,Financial Literacy,Finance,88
+8E,Aptitude,Verbal Reasoning,Business Management,85
+8E,Aptitude,Organization Skills,Entrepreneurship,92
+8E,Aptitude,Abstract Reasoning,Finance,70
+8E,Aptitude,Physical Endurance,Business Management,50
+8E,Interest,Wealth Management,Finance,90
+8E,Interest,Business Strategy,Business Management,95
+8E,Interest,Team Leadership,Entrepreneurship,89
+8E,Aptitude,Financial Literacy,Finance,86
+8E,Aptitude,Organization Skills,Entrepreneurship,89
+8E,Interest,Business Strategy,Business Management,93`;
 
 /* ── DYNAMIC GENERATORS ── */
-// 1. Dynamic Color Palette
 const THEME_COLORS = ['#1a5c6b', '#9a6b1a', '#2a5a3a', '#7a2a3a', '#4a1a6a', '#7a3a1a', '#2c3a4a', '#8abf9a', '#c88a96', '#b0d4db', '#d4b06a'];
 let colorCache = {};
 let colorIdx = 0;
@@ -288,13 +330,11 @@ function getColor(key) {
   return colorCache[key];
 }
 
-// Simple deterministic hash for consistent procedural generation
 function hashStr(str) {
   let h = 0; for(let i=0; i<str.length; i++) h = Math.imul(31, h) + str.charCodeAt(i) | 0;
   return Math.abs(h);
 }
 
-// 2. Dynamic Workshop Generators
 function getWorkshop(career) {
   const formats = ['Bootcamp', 'Masterclass', 'Club', 'Innovation Lab', 'Certification', 'Seminar', 'Workshop'];
   return `${career} ${formats[hashStr(career) % formats.length]}`;
@@ -303,7 +343,7 @@ function getElective(career) {
   return `Intro to ${career}`;
 }
 function getFee(career) {
-  let base = (hashStr(career) % 4) + 1; // 1 to 4
+  let base = (hashStr(career) % 4) + 1;
   return `₹${base},000 – ₹${base+2},000/mo`;
 }
 function getSetup(career) {
@@ -315,7 +355,6 @@ function getROI(career) {
   return rois[hashStr(career) % 4];
 }
 
-// 3. Dynamic Aptitude Recommendations
 function getAdvApt(apt) {
   const formats = ['Olympiad Coaching', 'Advanced Club', 'Excellence Group', 'Society', 'Mastery Hub'];
   let short = apt.split(' ')[0];
@@ -343,7 +382,6 @@ function parseCSV(txt){
   });
 }
 
-// GLOBALS populated dynamically
 let DYN_APT = [];
 let DYN_INT = [];
 
@@ -352,7 +390,6 @@ function go() {
   const rows = parseCSV(document.getElementById('csv').value);
   const secs = [...new Set(rows.map(r=>r['Section']))].filter(Boolean).sort();
   
-  // Dynamically extract parameters
   DYN_APT = [...new Set(rows.filter(r=>r['Test Type']==='Aptitude').map(r=>r['Parameter']))].filter(Boolean);
   DYN_INT = [...new Set(rows.filter(r=>r['Test Type']==='Interest').map(r=>r['Parameter']))].filter(Boolean);
 
@@ -373,7 +410,6 @@ function go() {
   buildInsights(rows);
 }
 
-/* ── 1. OVERALL CAREER DEMAND ── */
 function renderOverallDoughnut(rows){
   destroyChart('overallDoughnut');
   const counts={};
@@ -412,7 +448,6 @@ function renderOverallDoughnut(rows){
   });
 }
 
-/* ── 2. SECTION-WISE CAREER GRIDS ── */
 function renderSectionGrids(secs, rows) {
   const container = document.getElementById('sectionGridContainer');
   let html = '';
@@ -489,7 +524,6 @@ function renderSectionGrids(secs, rows) {
   });
 }
 
-/* ── 3. OVERALL COMBINED APTITUDE ── */
 function renderOverallAptitude(rows) {
   destroyChart('aptCombinedBar');
   const overallApt = {};
@@ -544,7 +578,6 @@ function renderOverallAptitude(rows) {
   `;
 }
 
-/* ── 4. SECTION APTITUDE BREAKDOWN ── */
 function renderAptSectionGrids(secs, aptMap) {
   const container = document.getElementById('aptSectionGridContainer');
   let html = '';
@@ -593,7 +626,6 @@ function renderAptSectionGrids(secs, aptMap) {
   });
 }
 
-/* ── INSIGHTS ENGINE (100% DYNAMIC) ── */
 function buildInsights(rows) {
   const secs = [...new Set(rows.map(r => r['Section']))].filter(Boolean).sort();
 
@@ -634,7 +666,6 @@ function buildInsights(rows) {
   const topSchoolApt = schoolAptSorted[0];
   const botSchoolApt = schoolAptSorted[schoolAptSorted.length - 1];
 
-  // 1. KPI STRIP
   const topCareerSchool = careerRanked[0]?.[0] || '—';
   const topCareerPct = careerRanked[0] ? Math.round(careerRanked[0][1] / totalRows * 100) : 0;
   const sectionsNeedHelp = secs.filter(s => secStats[s].botApt && secStats[s].botApt[1] < 60).length;
@@ -646,7 +677,6 @@ function buildInsights(rows) {
     <div class="ins-kpi"><div class="ins-kpi-label">Sections Flagged</div><div class="ins-kpi-val" style="color:${sectionsNeedHelp>0?'var(--rose)':'var(--sage)'};">${sectionsNeedHelp}</div><div class="ins-kpi-sub">Scoring < 60% in core assessments</div></div>
   `;
 
-  // 2. CAREER TRACKS (Dynamic Color & Action generation)
   const maxCount = careerRanked[0]?.[1] || 1;
   const roiColors = { 'Very High':'var(--sage)', 'High':'var(--teal)', 'Medium':'var(--gold)', 'Low':'var(--rose)' };
   const chartColors = careerRanked.map(([c]) => getColor(c) + 'dd');
@@ -690,9 +720,7 @@ function buildInsights(rows) {
     options: { responsive: true, maintainAspectRatio: false, cutout: '60%', plugins: { legend: { display: false } } }
   });
 
-  // 3. TABS CONTENT (Dynamic Logic)
   let priorityHtml = '';
-  // Generic Weakest Aptitude alert
   if (botSchoolApt && botSchoolApt[1] < 70) {
     const affectedSecs = secs.filter(s => secStats[s].aptMap[botSchoolApt[0]] < 70).join(', ');
     priorityHtml += insightBlock('red','urgent',
@@ -702,7 +730,6 @@ function buildInsights(rows) {
       ['Immediate', 'Remedial']
     );
   }
-  // Conflict Alert: High Demand Career vs Low Corresponding Aptitude (Generic heuristic)
   const topCareerSecs = secs.filter(s => secStats[s].topCareer === topCareerSchool);
   if(topCareerSecs.length > 0 && botSchoolApt && botSchoolApt[1] < 65) {
     priorityHtml += insightBlock('gold','watch',
@@ -714,7 +741,6 @@ function buildInsights(rows) {
   }
   document.getElementById('ins-priority').innerHTML = priorityHtml || '<p style="padding:20px;">No critical actions required.</p>';
 
-  // SPEND & EARN
   const roiOrder = { 'Very High': 4, 'High': 3, 'Medium': 2, 'Low': 1 };
   const earnRows = careerRanked.sort((a,b) => (roiOrder[getROI(b[0])] - roiOrder[getROI(a[0])]) || b[1] - a[1]);
   
@@ -742,7 +768,6 @@ function buildInsights(rows) {
     </div>
   `;
 
-  // SECTION PLANS
   let secHtml = '';
   secs.forEach(s => {
     const st = secStats[s];
