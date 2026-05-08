@@ -259,7 +259,7 @@ textarea{width:100%;height:120px;font-family:monospace;font-size:12px;padding:12
 </div>
 
 <script>
-/* ── UPDATED SAMPLE DATA ── */
+/* ── SAMPLE DATA ── */
 const SAMPLE = `Section,Test Type,Parameter,Interest Area,Score
 8A,Aptitude,Musical Aptitude,Music Production,95
 8A,Aptitude,Visual Arts,Fine Arts,88
@@ -390,7 +390,17 @@ function go() {
   const rows = parseCSV(document.getElementById('csv').value);
   const secs = [...new Set(rows.map(r=>r['Section']))].filter(Boolean).sort();
   
-  DYN_APT = [...new Set(rows.filter(r=>r['Test Type']==='Aptitude').map(r=>r['Parameter']))].filter(Boolean);
+  // FIXED to only include the 7 required Aptitude parameters
+  DYN_APT = [
+    'Abstract Reasoning',
+    'Language Aptitude',
+    'Mechanical Reasoning',
+    'Numerical Aptitude',
+    'Perceptual Aptitude',
+    'Spatial Aptitude',
+    'Verbal Reasoning'
+  ];
+  
   DYN_INT = [...new Set(rows.filter(r=>r['Test Type']==='Interest').map(r=>r['Parameter']))].filter(Boolean);
 
   const aptRows=rows.filter(r=>r['Test Type']==='Aptitude');
@@ -538,9 +548,7 @@ function renderOverallAptitude(rows) {
   const aptAverages = DYN_APT.map(p => ({
     param: p,
     avg: overallApt[p].length ? avg(overallApt[p]) : 0
-  })).filter(a => a.avg > 0);
-
-  if(!aptAverages.length) return;
+  }));
 
   const ctx = document.getElementById('aptCombinedBar').getContext('2d');
   charts['aptCombinedBar'] = new Chart(ctx, {
@@ -561,21 +569,25 @@ function renderOverallAptitude(rows) {
       plugins: { legend: { display: false } },
       scales: {
         x: { grid: { display: false }, ticks: { font: { size: 10 } } },
-        y: { min: 40, max: 100, grid: { color: 'rgba(0,0,0,0.05)' }, ticks: { font: { size: 11 } } }
+        y: { min: 0, max: 100, grid: { color: 'rgba(0,0,0,0.05)' }, ticks: { font: { size: 11 } } }
       }
     }
   });
 
-  const sorted = [...aptAverages].sort((a,b) => b.avg - a.avg);
-  const highest = sorted[0];
-  const lowest = sorted[sorted.length - 1];
+  const validApts = [...aptAverages].filter(a => a.avg > 0).sort((a,b) => b.avg - a.avg);
   
-  document.getElementById('aptOverallOppList').innerHTML = `
-    <li><span>• Top Strength: <strong>${highest.param}</strong></span> <span class="opp-val">School Test Avg: ${r1(highest.avg)}/100</span></li>
-    <li><span>• <strong>Action:</strong> ${getAdvApt(highest.param)}</span></li>
-    <li style="margin-top:10px;"><span>• Critical Gap: <strong>${lowest.param}</strong></span> <span class="opp-val" style="color:var(--rose)">School Test Avg: ${r1(lowest.avg)}/100</span></li>
-    <li><span>• <strong>Action:</strong> ${getRemApt(lowest.param)}</span></li>
-  `;
+  if(validApts.length > 0) {
+    const highest = validApts[0];
+    const lowest = validApts[validApts.length - 1];
+    document.getElementById('aptOverallOppList').innerHTML = `
+      <li><span>• Top Strength: <strong>${highest.param}</strong></span> <span class="opp-val">School Test Avg: ${r1(highest.avg)}/100</span></li>
+      <li><span>• <strong>Action:</strong> ${getAdvApt(highest.param)}</span></li>
+      <li style="margin-top:10px;"><span>• Critical Gap: <strong>${lowest.param}</strong></span> <span class="opp-val" style="color:var(--rose)">School Test Avg: ${r1(lowest.avg)}/100</span></li>
+      <li><span>• <strong>Action:</strong> ${getRemApt(lowest.param)}</span></li>
+    `;
+  } else {
+    document.getElementById('aptOverallOppList').innerHTML = `<li>No relevant aptitude data found in CSV.</li>`;
+  }
 }
 
 function renderAptSectionGrids(secs, aptMap) {
@@ -621,7 +633,7 @@ function renderAptSectionGrids(secs, aptMap) {
         labels: DYN_APT.map(p => p.split(' ')[0]), 
         datasets: [{ data: data, backgroundColor: 'var(--slate-m)', borderRadius: 3 }]
       },
-      options: { responsive: true, maintainAspectRatio: false, plugins: { legend: { display: false } }, scales: { y: { min: 40, max: 100 }, x: { ticks: { font: { size: 9 } } } } }
+      options: { responsive: true, maintainAspectRatio: false, plugins: { legend: { display: false } }, scales: { y: { min: 0, max: 100 }, x: { ticks: { font: { size: 9 } } } } }
     });
   });
 }
